@@ -8,16 +8,30 @@ function App() {
           <div className='overlay'>
               <div className='drawer'>
                   <h2>Корзина</h2>
-                  <div className='cartItem'>
-                      <div style={{backgroundImage:'url(/img/clothes/sneakers/image1.jpg)'}}
-                           className={'cartItemImg'}></div>
-                      <div>
-                          <p>Мужские Кроссовки Nike Air Max 270</p>
-                          <b>12 999 999руб.</b>
-                      </div>
+                  <div className='items'>
+                      <div className='cartItem'>
+                          <div style={{backgroundImage: 'url(/img/clothes/sneakers/image1.jpg)'}}
+                               className={'cartItemImg'}></div>
+                          <div>
+                              <p>Мужские Кроссовки Nike Air Max 270</p>
+                              <b>12 999 999руб.</b>
+                          </div>
 
-                      <img className='removeBtn' src='/img/svg/btn-remove.svg' alt='Remove'/>
+                          <img className='removeBtn' src='/img/svg/btn-remove.svg' alt='Remove'/>
+                      </div>
+                      <div className='cartItem'>
+                          <div style={{backgroundImage: 'url(/img/clothes/sneakers/image1.jpg)'}}
+                               className={'cartItemImg'}></div>
+                          <div>
+                              <p>Мужские Кроссовки Nike Air Max 270</p>
+                              <b>12 999 999руб.</b>
+                          </div>
+
+                          <img className='removeBtn' src='/img/svg/btn-remove.svg' alt='Remove'/>
+                      </div>
+                      ul>li*2>span+div+b
                   </div>
+
               </div>
           </div>
 
@@ -34,8 +48,8 @@ function App() {
 
               </div>
               <ul className="headerRight">
-                  <li >
-                      <img height={40} width={40} src='/img/profile.png' alt=''/>
+                  <li>
+                  <img height={40} width={40} src='/img/profile.png' alt=''/>
                       <span>1221 руб.</span>
 
                   </li>
