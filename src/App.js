@@ -4,8 +4,8 @@ import './App.scss';
 
 function App() {
   return (
-      <div className="wrapper">
-          <div className='overlay'>
+      <div className="wrapper bg-white border-r-[20px] min-w-[800px] flex flex-col">
+          {/* <div className='overlay'>
               <div className='drawer'>
                   <h2>Корзина</h2>
                   <div className='items'>
@@ -29,11 +29,22 @@ function App() {
 
                           <img className='removeBtn' src='/img/svg/btn-remove.svg' alt='Remove'/>
                       </div>
-                      ul>li*2>span+div+b
+                      <ul>
+                        <li>
+                            <span></span>
+                            <div></div>
+                            <b></b>
+                        </li>
+                        <li>
+                            <span></span>
+                            <div></div>
+                            <b></b>
+                        </li>
+                      </ul>
                   </div>
 
               </div>
-          </div>
+          </div> */}
 
 
           <header className="header">
@@ -58,7 +69,7 @@ function App() {
                   </li>
               </ul>
           </header>
-          <div className="content">
+          <div className="content flex flex-col shadow-[0 10px 20px rgba(0,0,0,0.4)]">
               <div>
                   <h1>Все товары</h1>
                   <div className='search-block'>
@@ -68,7 +79,7 @@ function App() {
               </div>
 
 
-              <div className='goods'>
+              <div className='grid justify-evenly '>
                   <div className='card'>
                       <div className='favorite'>
                           <img src='/img/svg/heart-unliked.svg' alt='unliked'/>
