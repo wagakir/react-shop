@@ -6,7 +6,7 @@ function App() {
   return (
       <div className="wrapper bg-white rounded-[20px] min-w-[700px]  flex flex-col p-[20px]">
         
-          {/* <div className='overlay'>
+           <div className='overlay'>
               <div className='drawer'>
                   <h2>Корзина</h2>
                   <div className='items'>
@@ -45,7 +45,7 @@ function App() {
                   </div>
 
               </div>
-          </div> */}
+          </div> 
 
 
           <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
@@ -61,8 +61,10 @@ function App() {
               </div>
               <ul className="headerRight">
                   <li>
-                  <img height={40} width={40} src='/img/profile.png' alt=''/>
-                      <span>1221 руб.</span>
+                  <img height={40} width={40} src='/img/profile.png'  alt=''/>
+                  </li>
+                  <li>
+                  <span>1221 руб.</span>
                   </li>
                   <li >
                       <img height={40} width={40} src='/img/cart.png' alt=''/>
@@ -73,7 +75,7 @@ function App() {
               <div className=' flex justify-between items-center p-[40px 10px] w-full'>
                 <h1 className="pl-3">Все товары</h1>
                   <div  className='p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex' >
-                      <img src='/img/svg/search.svg' alt='search' className="p-[10px]"/>
+                      <img src='/img/svg/search.svg' alt='search' className="p-[10px] hover:cursor-pointer"/>
                       <input className="text-base w-[200px]  m-2 border-none" placeholder='Поиск'/>
                   </div>
               </div>
