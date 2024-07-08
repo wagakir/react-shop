@@ -4,7 +4,8 @@ import './App.scss';
 
 function App() {
   return (
-      <div className="wrapper bg-white border-r-[20px] min-w-[800px] flex flex-col">
+      <div className="wrapper bg-white rounded-[20px] min-w-[700px]  flex flex-col p-[20px]">
+        
           {/* <div className='overlay'>
               <div className='drawer'>
                   <h2>Корзина</h2>
@@ -47,7 +48,7 @@ function App() {
           </div> */}
 
 
-          <header className="header">
+          <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
               <div className="headerLeft">
 
                   <img src="/img/logo.png" height={50} width={50} alt='logo'/>
@@ -62,24 +63,23 @@ function App() {
                   <li>
                   <img height={40} width={40} src='/img/profile.png' alt=''/>
                       <span>1221 руб.</span>
-
                   </li>
                   <li >
                       <img height={40} width={40} src='/img/cart.png' alt=''/>
                   </li>
               </ul>
           </header>
-          <div className="content flex flex-col shadow-[0 10px 20px rgba(0,0,0,0.4)]">
-              <div>
-                  <h1>Все товары</h1>
-                  <div className='search-block'>
-                      <img src='/img/svg/search.svg' alt='search'/>
-                      <input placeholder='Поиск'/>
+          <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
+              <div className=' flex justify-between items-center p-[40px 10px] w-full'>
+                <h1 className="pl-3">Все товары</h1>
+                  <div  className='p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex' >
+                      <img src='/img/svg/search.svg' alt='search' className="p-[10px]"/>
+                      <input className="text-base w-[200px]  m-2 border-none" placeholder='Поиск'/>
                   </div>
               </div>
 
 
-              <div className='grid justify-evenly '>
+              <div className='goods'>
                   <div className='card'>
                       <div className='favorite'>
                           <img src='/img/svg/heart-unliked.svg' alt='unliked'/>
