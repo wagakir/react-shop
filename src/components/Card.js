@@ -1,5 +1,6 @@
 import React from "react";
-function Card() {
+
+const Card = (props) => {
   return (
     <div className="card">
       <div className="favorite">
@@ -9,14 +10,14 @@ function Card() {
       <img
         width={133}
         height={112}
-        src="/img/clothes/sneakers/image7.jpg"
-        alt="Мужские кроссовки Nike Blazer Mid Suede"
+        src={props.imgUrl}
+        alt={props.name}
       />
-      <p>Мужские кроссовки Nike Blazer Mid Suede</p>
-      <div>
+      <p>{props.name}</p>
+      <div >
         <div>
           <span>Цена:</span>
-          <b>199 999 руб.</b>
+          <b>{props.price} руб.</b>
         </div>
         <button>
           <img width={30} height={30} src="/img/svg/plus.svg" alt="plus"></img>
@@ -24,5 +25,6 @@ function Card() {
       </div>
     </div>
   );
-}
+};
+
 export default Card;
