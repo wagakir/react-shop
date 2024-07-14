@@ -16,7 +16,7 @@ const arr = [
   {name:"Мужские Кроссовки Nike Lebron XVIII Low", price: 9999, imgUrl: `\\img\\clothes\\sneakers\\image9.jpg`},
   {name: "Мужские Кроссовки Nike Kyrie Flytrap IV", price: 11299, imgUrl: `\\img\\clothes\\sneakers\\image10.jpg`}
 ]
-
+// OLD PROJECT
 function App() {
   return (
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
