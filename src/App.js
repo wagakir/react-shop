@@ -20,8 +20,6 @@ const arr = [
 function App() {
   return (
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-     
-
       <Header/>
 
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">

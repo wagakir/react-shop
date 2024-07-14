@@ -1,6 +1,10 @@
 import React from "react";
 
+
 const Card = (props) => {
+  const onClickButton = () =>{
+    alert(props.price)
+  };
   return (
     <div className="card">
       <div className="favorite">
@@ -19,8 +23,8 @@ const Card = (props) => {
           <span>Цена:</span>
           <b>{props.price} руб.</b>
         </div>
-        <button>
-          <img width={30} height={30} src="/img/svg/plus.svg" alt="plus"></img>
+        <button  onClick={onClickButton}>
+          
         </button>
       </div>
     </div>
