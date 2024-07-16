@@ -11,7 +11,6 @@ body {
 }
 
 #root {
-  
   display: flex;
   justify-content: center;
   padding: 30px 100px;
@@ -34,7 +33,6 @@ ul {
 li {
   list-style-type: none;
 }
-
 
 .headerLeft {
   display: flex;
@@ -85,7 +83,6 @@ li {
 }
 
 .goods {
-  
   display: grid;
   width: 100%;
   grid-template-columns: repeat(auto-fill, 225px);
@@ -101,76 +98,8 @@ h1 {
   font-weight: 500;
   font-family: "Pacifico", cursive;
 }
-.card {
-  margin: 10px;
-  border: 1px solid #f3f3f3;
-  border-radius: 40px;
-  padding: 30px;
-  min-height: 260px;
-  width: 220px;
-  display: flex;
-  flex-direction: column;
-  transition:
-    box-shadow 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.05);
-  }
-  
-  p {
-    width: 160px;
-    padding: 2px;
-  }
-  div {
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    width: 160px;
-    flex: 1;
-    div {
-      width: 133px;
-      padding: 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      span {
-        font-size: 13px;
-        opacity: 0.7;
-        font-weight: 600;
-        text-transform: uppercase;
-        padding: 1px;
-      }
-      b {
-        font-size: 15px;
-        padding: 1px;
-      }
-    }
 
-    button {
 
-      height: 32px;
-      width: 32px;
-      cursor: pointer;
-      margin: 0;
-      padding: 0;
-    
-      border: none;
-      transition:
-        box-shadow 0.2s ease-in-out,
-        background 0.2s ease-in-out;
-      &:hover{
-        background:#9b7dbc;
-        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.05);
-      }
-    }
-  }
-}
-.favorite {
-  position: absolute;
-  cursor: pointer;
-}
 .overlay {
   position: absolute;
   left: 0;
@@ -179,10 +108,9 @@ h1 {
   height: 100%;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.2);
-  
 }
 .drawer {
-  padding: 20px ;
+  padding: 20px;
   position: absolute;
   width: 420px;
   right: 0;
@@ -194,28 +122,24 @@ h1 {
   h2 {
     font-size: 24pt;
     font-weight: 400;
-    font-family: 'Pacifico', cursive;
-    padding: 0 10px 10px ;
+    font-family: "Pacifico", cursive;
+    padding: 0 10px 10px;
     margin: 0;
   }
-  
-  
 }
-.cartTotalBlock{
-  li{
+.cartTotalBlock {
+  li {
     display: flex;
     align-items: flex-end;
-    div{
+    div {
       margin: 6px 4px;
-      flex:1;
+      flex: 1;
       height: 1px;
       border-bottom: 1px dashed #a8a8a8;
-      
     }
   }
-
 }
-.items{
+.items {
   overflow: auto;
   margin-top: 10px;
   flex: 1;
@@ -239,31 +163,33 @@ h1 {
     }
   }
 }
-.buttonGreen{
+.buttonGreen {
   position: relative;
-  background:#9dd558;
+  background: #9dd558;
   margin: 10px 0;
   padding: 10px;
   width: 100%;
-  box-shadow:  -5px 4px 24px rgba(0, 0, 0, 0.3) ;
+  box-shadow: -5px 4px 24px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   color: #ffffff;
   cursor: pointer;
-  transition: background 0.3s ease-in-out,
-              box-shadow 0.3s ease-in-out;
-  
-  &:hover{
-    box-shadow:  -5px 4px 24px rgba(0, 0, 0, 0.2) ;
-    background: lighten( #9dd558,  8%);
+  transition:
+    background 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: -5px 4px 24px rgba(0, 0, 0, 0.2);
+    background: lighten(#9dd558, 8%);
   }
-  &:hover{
-    img{transform: translateX(5px);}
+  &:hover {
+    img {
+      transform: translateX(5px);
+    }
   }
-  &:active{
-    background: darken( #9dd558,  8%)
-    
+  &:active {
+    background: darken(#9dd558, 8%);
   }
-  img{
+  img {
     top: 15px;
     position: absolute;
     right: 50px;

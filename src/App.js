@@ -3,7 +3,7 @@ import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
- 
+
 const arr = [
   {name:"Мужские Кроссовки Nike Blazer Mid Suede", price: 1232999, imgUrl: `\\img\\clothes\\sneakers\\image1.jpg`},
   {name:"Мужские Кроссовки Nike Air Max 270", price: 12999, imgUrl: `\\img\\clothes\\sneakers\\image2.jpg`},
