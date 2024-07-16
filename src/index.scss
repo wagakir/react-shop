@@ -144,25 +144,7 @@ h1 {
   margin-top: 10px;
   flex: 1;
 }
-.cartItem {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #e1e1e1;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 10px;
 
-  div {
-    p {
-      font-size: 15px;
-      margin-bottom: 5px;
-    }
-    b {
-      font-size: 14px;
-    }
-  }
-}
 .buttonGreen {
   position: relative;
   background: #9dd558;
@@ -177,18 +159,13 @@ h1 {
     background 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out;
 
-  &:hover {
-    box-shadow: -5px 4px 24px rgba(0, 0, 0, 0.2);
-    background: lighten(#9dd558, 8%);
-  }
+  
   &:hover {
     img {
       transform: translateX(5px);
     }
   }
-  &:active {
-    background: darken(#9dd558, 8%);
-  }
+  
   img {
     top: 15px;
     position: absolute;
@@ -212,3 +189,23 @@ h1 {
     opacity: 1;
   }
 }
+.clickAnimation {
+  cursor: pointer;
+  opacity: 0.4;
+  border-radius: 8px;
+  transition:
+    box-shadow 0.1s ease-in-out,
+    opacity 0.1s ease-in-out;
+  rect {
+    transition: fill 0.1s ease-in-out;
+  }
+  &:hover {
+    opacity: 1;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  &:active {
+    box-shadow: none;
+    opacity: 0.6;
+  }
+}
+

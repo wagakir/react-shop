@@ -14,11 +14,11 @@ const Header = (props) => {
           <li>
             <img height={40} width={40} src="/img/profile.png" alt="" />
           </li>
-          <li>
+          <li onClick={props.onOpenCart}>
             <span>1221 руб.</span>
           </li>
-          <li>
-            <img height={40} width={40} src="/img/cart.png" alt="" />
+          <li onClick={props.onOpenCart}>
+            <img height={40} width={40} src="/img/cart.png" alt=""/>
           </li>
         </ul>
       </header>
