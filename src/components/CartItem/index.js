@@ -3,7 +3,7 @@ import style from "./CartItem.module.scss";
 const CartItem = (props) => {
   return (
     <div className={style.cartItem}>
-        {console.log(props.imgUrl)}
+        
       <img
         src={props.imgUrl}
         alt={props.name}

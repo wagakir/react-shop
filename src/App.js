@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
@@ -56,63 +56,73 @@ import Drawer from "./components/Drawer";
 //     "imgUrl": "/img/clothes/sneakers/image10.jpg"
 //   }
 // ];
-
+// [
+//   {
+//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
+//     "price": 1232999,
+//     "imgUrl": "/img/clothes/sneakers/image1.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike Air Max 270",
+//     "price": 12999,
+//     "imgUrl": "/img/clothes/sneakers/image2.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
+//     "price": 15999,
+//     "imgUrl": "/img/clothes/sneakers/image3.jpg"
+//   },
+//   {
+//     "name": "Кроссовки Puma X Aka Boku Future Rider",
+//     "price": 8999,
+//     "imgUrl": "/img/clothes/sneakers/image4.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Under Armour Curry 8",
+//     "price": 15199,
+//     "imgUrl": "/img/clothes/sneakers/image5.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike Kyrie 7",
+//     "price": 11299,
+//     "imgUrl": "/img/clothes/sneakers/image6.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Jordan Air Jordan 11",
+//     "price": 16499,
+//     "imgUrl": "/img/clothes/sneakers/image7.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike LeBron XVIII",
+//     "price": 13999,
+//     "imgUrl": "/img/clothes/sneakers/image8.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike Lebron XVIII Low",
+//     "price": 9999,
+//     "imgUrl": "/img/clothes/sneakers/image9.jpg"
+//   },
+//   {
+//     "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
+//     "price": 11299,
+//     "imgUrl": "/img/clothes/sneakers/image10.jpg"
+//   }
+// ]
 let itemsCart = [];
 function App() {
   // const [count, setCount] = useState('green')
 
-  const [items, setItems] = useState([
-    {
-      "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-      "price": 1232999,
-      "imgUrl": "/img/clothes/sneakers/image1.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike Air Max 270",
-      "price": 12999,
-      "imgUrl": "/img/clothes/sneakers/image2.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-      "price": 15999,
-      "imgUrl": "/img/clothes/sneakers/image3.jpg"
-    },
-    {
-      "name": "Кроссовки Puma X Aka Boku Future Rider",
-      "price": 8999,
-      "imgUrl": "/img/clothes/sneakers/image4.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Under Armour Curry 8",
-      "price": 15199,
-      "imgUrl": "/img/clothes/sneakers/image5.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike Kyrie 7",
-      "price": 11299,
-      "imgUrl": "/img/clothes/sneakers/image6.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Jordan Air Jordan 11",
-      "price": 16499,
-      "imgUrl": "/img/clothes/sneakers/image7.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike LeBron XVIII",
-      "price": 13999,
-      "imgUrl": "/img/clothes/sneakers/image8.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike Lebron XVIII Low",
-      "price": 9999,
-      "imgUrl": "/img/clothes/sneakers/image9.jpg"
-    },
-    {
-      "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
-      "price": 11299,
-      "imgUrl": "/img/clothes/sneakers/image10.jpg"
-    }
-  ])
+  const [items, setItems] = useState([]);
+
+  React.useEffect(()=> {
+    fetch("https://6696b23c0312447373c36f73.mockapi.io/items")
+    .then((res) => {
+      return res.json();
+    })
+    .then((json) => {
+      setItems(json);
+    });
+  },[]);
 
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
@@ -127,7 +137,11 @@ function App() {
         }
       }} */}
       {drawerVisible && (
-        <Drawer itemsCart={itemsCart} onCloseCart={toggleFieldset} summ={summ} />
+        <Drawer
+          itemsCart={itemsCart}
+          onCloseCart={toggleFieldset}
+          summ={summ}
+        />
       )}
       <Header
         onOpenCart={() => {
@@ -168,7 +182,7 @@ function App() {
                   itemsCart.forEach((element) => {
                     tempSumm += element.price;
                   });
-                  return tempSumm
+                  return tempSumm;
                 });
               }}
               onClickFavorite={() => console.log("добавили товары")}
