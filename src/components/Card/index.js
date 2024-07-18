@@ -7,7 +7,7 @@ const Card = (props) => {
   const toggleIsAdded = () => setIsAdded(true);
   return (
     <div className={styles.card}>
-      <div style={{position:'absolute'}}>
+      <div className="absolute">
         <img src="/img/svg/heart-unliked.svg" alt="" onClick={props.onClickFavorite}
           className="clickAnimation" />
       </div>
