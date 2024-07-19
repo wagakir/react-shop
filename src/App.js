@@ -108,11 +108,18 @@ import Drawer from "./components/Drawer";
 //     "imgUrl": "/img/clothes/sneakers/image10.jpg"
 //   }
 // ]
-let itemsCart = [];
-function App() {
-  // const [count, setCount] = useState('green')
 
+function App() {
+
+  const [itemsCart, setItemsCart] = useState([]);
   const [items, setItems] = useState([]);
+  const [summ, setSumm] = useState(0)
+  
+  
+  const callBackSumm = (prev) =>{
+    setSumm(prev)
+  }
+  // useEffect(()=>{console.log('update');}, [items])
 
   React.useEffect(()=> {
     fetch("https://6696b23c0312447373c36f73.mockapi.io/items")
@@ -126,24 +133,21 @@ function App() {
 
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
-  const [summ, setSumm] = useState(0);
+
 
   return (
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-      {/* {() => {
-        if (drawerVisible) {
-          alert("234234");
-          return ;
-        }
-      }} */}
+     
       {drawerVisible && (
         <Drawer
           itemsCart={itemsCart}
           onCloseCart={toggleFieldset}
-          summ={summ}
+          callBack={callBackSumm}
+          
         />
       )}
       <Header
+        summ={summ}
         onOpenCart={() => {
           toggleFieldset();
         }}
@@ -155,7 +159,7 @@ function App() {
       </div> */}
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
         <div className=" flex justify-between items-center p-[40px 10px] w-full">
-          <h1 className="pl-3">Все товары </h1>
+          <h1 className="pl-3">Все товары {summ} </h1>
           <div className="p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex">
             <img
               src="/img/svg/search.svg"
@@ -172,18 +176,14 @@ function App() {
         <div className="goods">
           {items.map((obj) => (
             <Card
+              key={obj.article}
               name={obj.name}
               price={obj.price}
               imgUrl={obj.imgUrl}
+              
               onClickPlus={() => {
-                itemsCart.push(obj);
-                setSumm(() => {
-                  let tempSumm = 0;
-                  itemsCart.forEach((element) => {
-                    tempSumm += element.price;
-                  });
-                  return tempSumm;
-                });
+                
+                setItemsCart(prev =>[...prev, obj]);
               }}
               onClickFavorite={() => console.log("добавили товары")}
             ></Card>
