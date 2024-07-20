@@ -14,7 +14,9 @@ const Drawer = (props) => {
   // const handleSummChange = (event)=>{
   //   props.callBack(event)
   // }
-  
+
+  const [cartCheck, setCartCheck] = React.useState(true)
+  React.useEffect(()=>{ setCartCheck(summ <= 0)}, []);
   React.useEffect(()=>{ setSumm( countCart()) }, [props.itemsCart]);
   // React.useEffect(()=>{handleSummChange(summ)}, [summ])
   // useEffect(()=>{
@@ -37,8 +39,15 @@ const Drawer = (props) => {
           />
         </h2>
         <div className="items">
-          {props.itemsCart.map((obj) => (
-            <CartItem name={obj.name} price={obj.price} imgUrl={obj.imgUrl} />
+          {
+          props.itemsCart.map((obj, index) => (
+            <CartItem 
+            name={obj.name} 
+            price={obj.price} 
+            imgUrl={obj.imgUrl} 
+            itemsCart={obj.itemsCart}
+            key = {obj.id + index}
+            />
           ))}
         </div>
         <ul className="cartTotalBlock">
@@ -52,7 +61,7 @@ const Drawer = (props) => {
             <div></div>
             <b>1000 руб. </b>
           </li>
-          <button className="buttonGreen clickAnimation ">
+          <button className="buttonGreen clickAnimation " disabled={cartCheck} >
             Оформить заказ
             <img src="/img/svg/arrow.svg" alt="Arrow" />
           </button>

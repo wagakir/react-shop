@@ -1,6 +1,13 @@
 import React from "react";
 import style from "./CartItem.module.scss";
 const CartItem = (props) => {
+  const removeClick = () =>{
+    // props.itemsCart.forEach(element => {
+    //   if(element.id === props.id){
+    //     props.itemsCart.pop(element)
+    //   }     
+    // });
+  }
   return (
     <div className={style.cartItem}>
         
@@ -14,7 +21,7 @@ const CartItem = (props) => {
         <b>{props.price}руб.</b>
       </div>
 
-      <img className="removeBtn" src="/img/svg/btn-remove.svg" alt="Remove" />
+      <img className="removeBtn" src="/img/svg/btn-remove.svg" onClick={removeClick} alt="Remove" />
     </div>
   );
 };

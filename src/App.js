@@ -110,41 +110,42 @@ import Drawer from "./components/Drawer";
 // ]
 
 function App() {
-
+  // const [searchedItems, setSearchedItems] = useState([])
+  // useEffect(()=>{}, [])
   const [itemsCart, setItemsCart] = useState([]);
   const [items, setItems] = useState([]);
-
-
-  const [summ, setSumm] = useState(0)
+  const [searchValue, setSearchValue] = useState("");
+  const [summ, setSumm] = useState(0);
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+  // useEffect(()=>{setSearchedItems(items.filter((obj) => obj.name === searchValue))}, [searchValue])
   // достать соседа
   // const callBackSumm = (prev) =>{
   //   setSumm(prev)
   // }
   // useEffect(()=>{console.log('update');}, [items])
 
-  React.useEffect(()=> {
+  React.useEffect(() => {
     fetch("https://6696b23c0312447373c36f73.mockapi.io/items")
-    .then((res) => {
-      return res.json();
-    })
-    .then((json) => {
-      setItems(json);
-    });
-  },[]);
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setItems(json);
+      });
+  }, []);
 
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
 
-
   return (
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-     
       {drawerVisible && (
         <Drawer
           itemsCart={itemsCart}
           onCloseCart={toggleFieldset}
           // callBack={callBackSumm}
-          
         />
       )}
       <Header
@@ -160,22 +161,34 @@ function App() {
       </div> */}
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
         <div className=" flex justify-between items-center p-[40px 10px] w-full">
-          <h1 className="pl-3">Все товары {summ} </h1>
+          <h1 className="pl-3 truncate">Все товары </h1>
           <div className="p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex">
             <img
               src="/img/svg/search.svg"
               alt="search"
-              className="p-[10px] hover:cursor-pointer rounded-full clickAnimation"
+              className="p-[10px] m-1 hover:cursor-pointer rounded-full clickAnimation"
             />
             <input
-              className="text-base w-[200px]  m-2 border-none"
+              onChange={handleSearchChange}
+              className="text-base w-[200px]  m-2 border-none truncate"
               placeholder="Поиск"
+              value={searchValue}
             />
+            {searchValue && (
+              <img
+                onClick={() => {
+                  setSearchValue("");
+                }}
+                className="removeBtn p-1"
+                src="/img/svg/btn-remove.svg"
+                alt="Remove"
+              />
+            )}
           </div>
         </div>
 
         <div className="goods">
-          {items.map((obj) => (
+          {/* {searchValue && searchedItems.map((obj) => (
             <Card
               key={obj.article}
               name={obj.name}
@@ -188,7 +201,23 @@ function App() {
               }}
               onClickFavorite={() => console.log("добавили товары")}
             ></Card>
-          ))}
+          )) ||  */}
+          {items
+            .filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+            .map((obj) => (
+              <Card
+                key={obj.article}
+                name={obj.name}
+                price={obj.price}
+                imgUrl={obj.imgUrl}
+                onClickPlus={() => {
+                  obj.id = Math.floor(Math.random() * 100000);
+                  setItemsCart((prev) => [...prev, obj]);
+                  console.log(itemsCart);
+                }}
+                onClickFavorite={() => console.log("добавили товары")}
+              ></Card>
+            ))}
         </div>
       </div>
     </div>
