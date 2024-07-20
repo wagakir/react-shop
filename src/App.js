@@ -113,12 +113,13 @@ function App() {
 
   const [itemsCart, setItemsCart] = useState([]);
   const [items, setItems] = useState([]);
+
+
   const [summ, setSumm] = useState(0)
-  
-  
-  const callBackSumm = (prev) =>{
-    setSumm(prev)
-  }
+  // достать соседа
+  // const callBackSumm = (prev) =>{
+  //   setSumm(prev)
+  // }
   // useEffect(()=>{console.log('update');}, [items])
 
   React.useEffect(()=> {
@@ -142,7 +143,7 @@ function App() {
         <Drawer
           itemsCart={itemsCart}
           onCloseCart={toggleFieldset}
-          callBack={callBackSumm}
+          // callBack={callBackSumm}
           
         />
       )}

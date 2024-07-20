@@ -11,12 +11,12 @@ const Drawer = (props) => {
     });
     return tempSumm;
   };
-  const handleSummChange = (event)=>{
-    props.callBack(event)
-  }
+  // const handleSummChange = (event)=>{
+  //   props.callBack(event)
+  // }
   
   React.useEffect(()=>{ setSumm( countCart()) }, [props.itemsCart]);
-  React.useEffect(()=>{handleSummChange(summ)}, [summ])
+  // React.useEffect(()=>{handleSummChange(summ)}, [summ])
   // useEffect(()=>{
   //   setSumm(0)
   //   props.itemsCart.forEach(element => {
