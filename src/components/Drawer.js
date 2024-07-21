@@ -1,31 +1,25 @@
 import React from "react";
 import CartItem from "./CartItem";
+import axios from "axios";
 const Drawer = (props) => {
-  const [summ, setSumm] = React.useState(0);
-  
-  
+
+
+  const [cart, setCart] = React.useState([]); 
+  React.useEffect(()=>{axios.get("https://6696b23c0312447373c36f73.mockapi.io/cart").then((res)=>{setCart(res.data)})}, [cart])
+  const [summ, setSumm] = React.useState(0); 
   const countCart = () => {
     let tempSumm = 0;
-    props.itemsCart.forEach((element) => {
+    cart.forEach((element) => {
       tempSumm += element.price;
     });
     return tempSumm;
   };
-  // const handleSummChange = (event)=>{
-  //   props.callBack(event)
-  // }
+  
 
   const [cartCheck, setCartCheck] = React.useState(true)
-  React.useEffect(()=>{ setCartCheck(summ <= 0)}, []);
-  React.useEffect(()=>{ setSumm( countCart()) }, [props.itemsCart]);
-  // React.useEffect(()=>{handleSummChange(summ)}, [summ])
-  // useEffect(()=>{
-  //   setSumm(0)
-  //   props.itemsCart.forEach(element => {
-  //     console.log(element);
-  //     setSumm(summ + element.price)
-  //   });
-  // })
+  
+  React.useEffect(()=>{ setCartCheck(countCart()<=0 ); setSumm( countCart()) }, [cart]);
+ 
   return (
     <div className="overlay">
       <div className="drawer">
@@ -40,13 +34,13 @@ const Drawer = (props) => {
         </h2>
         <div className="items">
           {
-          props.itemsCart.map((obj, index) => (
+          cart.map((obj, index) => (
             <CartItem 
             name={obj.name} 
             price={obj.price} 
             imgUrl={obj.imgUrl} 
-            itemsCart={obj.itemsCart}
-            key = {obj.id + index}
+            // itemsCart={obj.itemsCart}
+            key = {obj.id}
             />
           ))}
         </div>

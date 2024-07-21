@@ -97,6 +97,7 @@ li {
 }
 
 h1 {
+  padding: 10px;
   font-size: 34pt;
   font-weight: 500;
   font-family: "Pacifico", cursive;
@@ -163,7 +164,20 @@ h1 {
     box-shadow 0.3s ease-in-out;
 
   &:disabled{
+    cursor: default;
     background-color: #a8a8a8;
+    &:hover {
+      opacity: 0.4;
+      box-shadow: -5px 4px 24px rgba(0, 0, 0, 0.3);
+    }
+    &:active {
+      transform: translateY(0px);
+      box-shadow: -5px 4px 24px rgba(0, 0, 0, 0.3);
+      opacity: 0.4;
+    }
+    &:hover {img {
+      transform: translateX(0px);
+    }}
   }
   &:hover {
     img {

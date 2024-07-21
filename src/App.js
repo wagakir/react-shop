@@ -3,117 +3,82 @@ import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
+import axios from "axios";
 
-// const items = [
-//   {
-//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-//     "price": 1232999,
-//     "imgUrl": "/img/clothes/sneakers/image1.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Air Max 270",
-//     "price": 12999,
-//     "imgUrl": "/img/clothes/sneakers/image2.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-//     "price": 15999,
-//     "imgUrl": "/img/clothes/sneakers/image3.jpg"
-//   },
-//   {
-//     "name": "Кроссовки Puma X Aka Boku Future Rider",
-//     "price": 8999,
-//     "imgUrl": "/img/clothes/sneakers/image4.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Under Armour Curry 8",
-//     "price": 15199,
-//     "imgUrl": "/img/clothes/sneakers/image5.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Kyrie 7",
-//     "price": 11299,
-//     "imgUrl": "/img/clothes/sneakers/image6.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Jordan Air Jordan 11",
-//     "price": 16499,
-//     "imgUrl": "/img/clothes/sneakers/image7.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike LeBron XVIII",
-//     "price": 13999,
-//     "imgUrl": "/img/clothes/sneakers/image8.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Lebron XVIII Low",
-//     "price": 9999,
-//     "imgUrl": "/img/clothes/sneakers/image9.jpg",
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
-//     "price": 11299,
-//     "imgUrl": "/img/clothes/sneakers/image10.jpg"
-//   }
-// ];
-// [
-//   {
-//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-//     "price": 1232999,
-//     "imgUrl": "/img/clothes/sneakers/image1.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Air Max 270",
-//     "price": 12999,
-//     "imgUrl": "/img/clothes/sneakers/image2.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-//     "price": 15999,
-//     "imgUrl": "/img/clothes/sneakers/image3.jpg"
-//   },
-//   {
-//     "name": "Кроссовки Puma X Aka Boku Future Rider",
-//     "price": 8999,
-//     "imgUrl": "/img/clothes/sneakers/image4.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Under Armour Curry 8",
-//     "price": 15199,
-//     "imgUrl": "/img/clothes/sneakers/image5.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Kyrie 7",
-//     "price": 11299,
-//     "imgUrl": "/img/clothes/sneakers/image6.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Jordan Air Jordan 11",
-//     "price": 16499,
-//     "imgUrl": "/img/clothes/sneakers/image7.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike LeBron XVIII",
-//     "price": 13999,
-//     "imgUrl": "/img/clothes/sneakers/image8.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Lebron XVIII Low",
-//     "price": 9999,
-//     "imgUrl": "/img/clothes/sneakers/image9.jpg"
-//   },
-//   {
-//     "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
-//     "price": 11299,
-//     "imgUrl": "/img/clothes/sneakers/image10.jpg"
-//   }
-// ]
+
 
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
   // useEffect(()=>{}, [])
-  const [itemsCart, setItemsCart] = useState([]);
-  const [items, setItems] = useState([]);
+  // const [cart, setCart] = useState()
+  const [items, setItems] = useState([
+    {
+      "name": "Мужские Кроссовки Nike Blazer Mid Suede",
+      "price": 1232999,
+      "imgUrl": "/img/clothes/sneakers/image1.jpg",
+      "article": 1
+    },
+    {
+      "name": "Мужские Кроссовки Nike Air Max 270",
+      "price": 12999,
+      "imgUrl": "/img/clothes/sneakers/image2.jpg",
+      "article": 2
+    },
+    {
+      "name": "Мужские Кроссовки Nike Blazer Mid Suede",
+      "price": 15999,
+      "imgUrl": "/img/clothes/sneakers/image3.jpg",
+      "article": 3
+    },
+    {
+      "name": "Кроссовки Puma X Aka Boku Future Rider",
+      "price": 8999,
+      "imgUrl": "/img/clothes/sneakers/image4.jpg",
+      "article": 4
+    },
+    {
+      "name": "Мужские Кроссовки Under Armour Curry 8",
+      "price": 15199,
+      "imgUrl": "/img/clothes/sneakers/image5.jpg",
+      "article": 5
+    },
+    {
+      "name": "Мужские Кроссовки Nike Kyrie 7",
+      "price": 11299,
+      "imgUrl": "/img/clothes/sneakers/image6.jpg",
+      "article": 6
+    },
+    {
+      "name": "Мужские Кроссовки Jordan Air Jordan 11",
+      "price": 16499,
+      "imgUrl": "/img/clothes/sneakers/image7.jpg",
+      "article": 7
+    },
+    {
+      "name": "Мужские Кроссовки Nike LeBron XVIII",
+      "price": 13999,
+      "imgUrl": "/img/clothes/sneakers/image8.jpg",
+      "article": 8
+    },
+    {
+      "name": "Мужские Кроссовки Nike Lebron XVIII Low",
+      "price": 9999,
+      "imgUrl": "/img/clothes/sneakers/image9.jpg",
+      "article": 9
+    },
+    {
+      "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
+      "price": 11299,
+      "imgUrl": "/img/clothes/sneakers/image10.jpg",
+      "article": 10
+    },
+    {
+      "name": "aba",
+      "price": 1234,
+      "imgUrl": "/img/clothes/sneakers/image1.jpg",
+      "article": 11
+    }
+  ]);
   const [searchValue, setSearchValue] = useState("");
   const [summ, setSumm] = useState(0);
   const handleSearchChange = (event) => {
@@ -126,15 +91,31 @@ function App() {
   // }
   // useEffect(()=>{console.log('update');}, [items])
 
-  React.useEffect(() => {
-    fetch("https://6696b23c0312447373c36f73.mockapi.io/items")
+  useEffect(() => {
+    
+    axios
+      .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
       .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setItems(json);
+        res.data.forEach((element) => {
+          setSumm((prev) => element.price + prev);
+        });
       });
   }, []);
+
+  const onAddToCart = (obj) => {
+    //  obj.id = Math.floor(Math.random() * 100000);
+    axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj);
+    setSumm(0);
+    axios
+      .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
+      .then((res) => {
+        res.data.forEach((element) => {
+          setSumm((prev) => element.price + prev);
+        });
+      });
+    // .then((res) => {setItems(res.data);});
+    // setItemsCart((prev) => [...prev, obj]);
+  };
 
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
@@ -143,7 +124,6 @@ function App() {
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
       {drawerVisible && (
         <Drawer
-          itemsCart={itemsCart}
           onCloseCart={toggleFieldset}
           // callBack={callBackSumm}
         />
@@ -179,7 +159,7 @@ function App() {
                 onClick={() => {
                   setSearchValue("");
                 }}
-                className="removeBtn p-1"
+                className="removeBtn p-2 rounded-full border-none"
                 src="/img/svg/btn-remove.svg"
                 alt="Remove"
               />
@@ -203,7 +183,9 @@ function App() {
             ></Card>
           )) ||  */}
           {items
-            .filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
+            .filter((item) =>
+              item.name.toLowerCase().includes(searchValue.toLowerCase())
+            )
             .map((obj) => (
               <Card
                 key={obj.article}
@@ -211,9 +193,7 @@ function App() {
                 price={obj.price}
                 imgUrl={obj.imgUrl}
                 onClickPlus={() => {
-                  obj.id = Math.floor(Math.random() * 100000);
-                  setItemsCart((prev) => [...prev, obj]);
-                  console.log(itemsCart);
+                  onAddToCart(obj);
                 }}
                 onClickFavorite={() => console.log("добавили товары")}
               ></Card>
