@@ -2,6 +2,7 @@ import React from "react";
 import style from "./CartItem.module.scss";
 const CartItem = (props) => {
   const removeClick = () =>{
+    props.onRemove(props.id)
     // props.itemsCart.forEach(element => {
     //   if(element.id === props.id){
     //     props.itemsCart.pop(element)

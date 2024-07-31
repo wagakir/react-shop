@@ -3,12 +3,12 @@ import CartItem from "./CartItem";
 import axios from "axios";
 const Drawer = (props) => {
 
-
+  let tempSumm = 0;
   const [cart, setCart] = React.useState([]); 
-  React.useEffect(()=>{axios.get("https://6696b23c0312447373c36f73.mockapi.io/cart").then((res)=>{setCart(res.data)})}, [cart])
+  React.useEffect(()=>{axios.get("https://6696b23c0312447373c36f73.mockapi.io/cart").then((res)=>{setCart(res.data)})}, [])
   const [summ, setSumm] = React.useState(0); 
   const countCart = () => {
-    let tempSumm = 0;
+    
     cart.forEach((element) => {
       tempSumm += element.price;
     });
@@ -32,15 +32,18 @@ const Drawer = (props) => {
             alt="Remove"
           />
         </h2>
+        {}
         <div className="items">
           {
           cart.map((obj, index) => (
             <CartItem 
+            onRemove={props.onRemove}
             name={obj.name} 
             price={obj.price} 
             imgUrl={obj.imgUrl} 
             // itemsCart={obj.itemsCart}
             key = {obj.id}
+            id = {obj.id}
             />
           ))}
         </div>
