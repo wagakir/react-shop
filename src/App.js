@@ -82,6 +82,7 @@ function App() {
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
+  const [cart, setCart] = useState([]);
   // useEffect(()=>{setSearchedItems(items.filter((obj) => obj.name === searchValue))}, [searchValue])
   // достать соседа
   // const callBackSumm = (prev) =>{
@@ -89,28 +90,44 @@ function App() {
   // }
   // useEffect(()=>{console.log('update');}, [items])
 
-  useEffect(() => {countSumm()}, []);
-
-  const onAddToCart = (obj) => {
-    //  obj.id = Math.floor(Math.random() * 100000);
-
-    axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
-    
-    countSumm()
-    // .then((res) => {setItems(res.data);});
-    // setItemsCart((prev) => [...prev, obj]);
-  };
-  const onRemoveItem = (id) => {
-    axios.delete(`https://6696b23c0312447373c36f73.mockapi.io/cart/${id}`);
-  };
-  const countSumm = () => {
+  useEffect(() => {
     axios
       .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
       .then((res) => {
-        res.data.forEach((element) => {
-          setSumm((prev) => element.price + prev);
-        });
+        setCart(res.data);
       });
+  }, []);
+  useEffect(() => {
+    countSumm();
+  }, [cart]);
+  const onAddToCart = (obj) => {
+    // let promise = new Promise(()=>{axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj);
+    //   countSumm()})
+    // promise()
+    axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
+    // .then(function (response) {
+    //   console.log(response);
+    //   countSumm()
+    // })
+    ;
+    
+  
+    axios
+      .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
+      .then((res) => {
+        setCart(res.data);
+      });
+    setCart((prev) => [...prev, obj]);
+    // .then((res) => {setItems(res.data);});
+  };
+  const onRemoveItem = (id) => {
+    axios.delete(`https://6696b23c0312447373c36f73.mockapi.io/cart/${id}`);
+    setCart((prev) => prev.filter((item) => id !== item.id));
+  };
+
+  const countSumm = () => {
+    setSumm(0);
+    cart.forEach((element) => setSumm((prev) => element.price + prev));
   };
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
@@ -119,6 +136,7 @@ function App() {
     <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
       {drawerVisible && (
         <Drawer
+          cart={cart}
           onRemove={onRemoveItem}
           onCloseCart={toggleFieldset}
           // callBack={callBackSumm}
