@@ -14,8 +14,9 @@ const Header = (props) => {
           <li>
             <img height={40} width={40} src="/img/profile.png" alt="" />
           </li>
-          <li onClick={props.onOpenCart}>
-            <span>{props.summ} руб.</span>
+          <li onClick={props.onOpenCart}> 
+            {props.summ>0?<span>{props.summ} руб.</span>:<span/>}
+            
           </li>
           <li onClick={props.onOpenCart}>
             <img height={40} width={40} src="/img/cart.png" alt=""/>

@@ -1,13 +1,15 @@
 import React from "react";
 import style from "./CartItem.module.scss";
 const CartItem = (props) => {
-  const removeClick = () =>{
-    // props.itemsCart.forEach(element => {
-    //   if(element.id === props.id){
-    //     props.itemsCart.pop(element)
-    //   }     
-    // });
-  }
+  // const removeClick = () =>{
+  //   props.onRemove(props.id)
+  //   // props.itemsCart.forEach(element => {
+  //   //   if(element.id === props.id){
+  //   //     props.itemsCart.pop(element)
+  //   //   }     
+  //   // });
+  // }
+  React.useEffect(()=>{console.log(props.id);},[])
   return (
     <div className={style.cartItem}>
         
@@ -21,7 +23,7 @@ const CartItem = (props) => {
         <b>{props.price}руб.</b>
       </div>
 
-      <img className="removeBtn" src="/img/svg/btn-remove.svg" onClick={removeClick} alt="Remove" />
+      <img className="removeBtn" src="/img/svg/btn-remove.svg" onClick={()=>(props.onRemove(props.id))} alt="Remove" />
     </div>
   );
 };
