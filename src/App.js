@@ -81,10 +81,12 @@ function App() {
   ]);
   const [searchValue, setSearchValue] = useState("");
   const [summ, setSumm] = useState(0);
+  const [articleArray, setArticleArray] = useState([]);
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
   const [cart, setCart] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   // useEffect(()=>{setSearchedItems(items.filter((obj) => obj.name === searchValue))}, [searchValue])
   // достать соседа
   // const callBackSumm = (prev) =>{
@@ -97,30 +99,26 @@ function App() {
       .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
       .then((res) => {
         setCart(res.data);
+        setArticleArray(res.data.map((obj) => obj.article));
       });
   }, []);
   useEffect(() => {
     countSumm();
   }, [cart]);
   const onAddToCart = (obj) => {
-    // let promise = new Promise(()=>{axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj);
-    //   countSumm()})
-    // promise()
-    axios.post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
-    // .then(function (response) {
-    //   console.log(response);
-    //   countSumm()
-    // })
-    ;
-    
-  
     axios
-      .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
+      .post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
       .then((res) => {
-        setCart(res.data);
+        setCart((prev) => [...prev, res.data]);
       });
-    setCart((prev) => [...prev, obj]);
-    // .then((res) => {setItems(res.data);});
+    // setCart((prev) => [...prev, obj]);
+  };
+  const onAddToFavorites = (obj) => {
+    axios
+      .post("https://6696b23c0312447373c36f73.mockapi.io/favorites", obj)
+      .then((res) => {
+        setFavorites((prev) => [...prev, res.data]);
+      });
   };
   const onRemoveItem = (id) => {
     axios.delete(`https://6696b23c0312447373c36f73.mockapi.io/cart/${id}`);
@@ -150,11 +148,7 @@ function App() {
           toggleFieldset();
         }}
       />
-      {/* <div style={{background:count, height:400, width:400}} >
-      <h1>{count}</h1>
-      <button className="w-6 h-6 bg-slate-500 m-6"  onClick={() => {setCount("red"); console.log(count); console.log(setCount);}}>-</button>
-      <button className="w-6 h-6 bg-slate-500 m-6" onClick={() => {setCount("purple"); console.log(count); console.log(setCount);}}>+</button>
-      </div> */}
+
 
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
         <div className=" flex justify-between items-center p-[40px 10px] w-full">
@@ -173,11 +167,30 @@ function App() {
         </div>
 
         <div className="goods">
+
+          {items
+            .filter((item) =>
+              item.name.toLowerCase().includes(searchValue.toLowerCase())
+            )
+            .map((obj) => (
+              <Card
+                onClickFavorite={() => onAddToFavorites(obj)}
+                articleArray={articleArray}
+                article={obj.article}
+                key={obj.article}
+                name={obj.name}
+                price={obj.price}
+                imgUrl={obj.imgUrl}
+                onClickPlus={() => onAddToCart(obj)}
+              ></Card>
+            ))}
+
           {arr.map(
             (obj) =>
           (<Card name = {obj.name} price= {obj.price} imgUrl={obj.imgUrl}></Card>)
 
           )}
+
         </div>
       </div>
     </div>
