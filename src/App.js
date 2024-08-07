@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
-
-
 import axios from "axios";
+
 
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
@@ -184,12 +183,6 @@ function App() {
                 onClickPlus={() => onAddToCart(obj)}
               ></Card>
             ))}
-
-          {arr.map(
-            (obj) =>
-          (<Card name = {obj.name} price= {obj.price} imgUrl={obj.imgUrl}></Card>)
-
-          )}
 
         </div>
       </div>
