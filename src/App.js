@@ -1,4 +1,4 @@
-import React, {useState,useEffect}, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
