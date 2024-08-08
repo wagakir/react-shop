@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect}, { useState, useEffect } from "react";
 import "./App.scss";
 import Card from "./components/Card";
 import Header from "./components/Header";
@@ -148,25 +148,35 @@ function App() {
         }}
       />
 
-
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
         <div className=" flex justify-between items-center p-[40px 10px] w-full">
-          <h1 className="pl-3">Все товары</h1>
+          <h1 className="pl-3 truncate">Все товары </h1>
           <div className="p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex">
             <img
               src="/img/svg/search.svg"
               alt="search"
-              className="p-[10px] hover:cursor-pointer"
+              className="p-[10px] m-1 hover:cursor-pointer rounded-full clickAnimation"
             />
             <input
-              className="text-base w-[200px]  m-2 border-none"
+              onChange={handleSearchChange}
+              className="text-base w-[200px]  m-2 border-none truncate"
               placeholder="Поиск"
+              value={searchValue}
             />
+            {searchValue && (
+              <img
+                onClick={() => {
+                  setSearchValue("");
+                }}
+                className="removeBtn p-2 rounded-full border-none"
+                src="/img/svg/btn-remove.svg"
+                alt="Remove"
+              />
+            )}
           </div>
         </div>
 
         <div className="goods">
-
           {items
             .filter((item) =>
               item.name.toLowerCase().includes(searchValue.toLowerCase())

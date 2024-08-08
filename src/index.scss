@@ -9,7 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(90grad, #9b7dbc, #a0c2a7);
 }
-// OLD PROJECT
+
 #root {
   display: flex;
   justify-content: center;
@@ -68,7 +68,7 @@ li {
 }
 
 .headerRight {
-  width: 200px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
 
@@ -79,6 +79,9 @@ li {
       cursor: pointer;
     }
     span {
+      padding: 5px;
+      text-wrap: nowrap;
+      min-width: fit-content;
       font-weight: 500;
       font-size: 1.3em;
     }
@@ -140,7 +143,6 @@ h1 {
       flex: 1;
       height: 1px;
       border-bottom: 1px dashed #a8a8a8;
-     
     }
   }
 }
