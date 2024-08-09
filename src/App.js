@@ -4,7 +4,7 @@ import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import axios from "axios";
-
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
@@ -147,7 +147,7 @@ function App() {
           toggleFieldset();
         }}
       />
-
+      <Routes><Route path="/favorites" ></Route></Routes>
       <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
         <div className=" flex justify-between items-center p-[40px 10px] w-full">
           <h1 className="pl-3 truncate">Все товары </h1>
@@ -193,7 +193,6 @@ function App() {
                 onClickPlus={() => onAddToCart(obj)}
               ></Card>
             ))}
-
         </div>
       </div>
     </div>

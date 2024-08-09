@@ -1,5 +1,5 @@
 import React from "react"
-
+import { Link } from "react-router-dom";
 const Header = (props) => {
   return (
     <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
@@ -12,7 +12,12 @@ const Header = (props) => {
         </div>
         <ul className="headerRight">
           <li>
-            <img height={40} width={40} src="/img/profile.png" alt="" />
+            <Link to='/favorites'>
+            <img height={70} width={70} src="\img\svg\favorite.svg" alt="favorites" ></img>
+            </Link>
+          </li>
+          <li>
+            <img height={40} width={40} src="/img/profile.png" alt="profile" />
           </li>
           <li onClick={props.onOpenCart}> 
             {props.summ>0?<span>{props.summ} руб.</span>:<span >Корзина пуста</span>}
