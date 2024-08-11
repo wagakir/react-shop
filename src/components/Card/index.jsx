@@ -8,18 +8,17 @@ const Card = (props) => {
   const [isLiked, setIsLiked] = React.useState(false);
   const toggleIsLiked = () => setIsLiked(!isLiked);
   
-  React.useEffect(()=>{
+  // React.useEffect(()=>{
     // axios
     //   .get("https://6696b23c0312447373c36f73.mockapi.io/cart")
     //   .then((res) => {
-        props.articleArray.forEach((element) => {
-          console.log(element);
-          // console.log(props.article);
-          if (element.article === props.article) {
-            setIsAdded(true);
-          }
-        // });
-    })},[])
+    //     res.data.forEach((element) => {
+
+    //       if (element.article === props.article) {
+    //         setIsAdded(true);
+    //       }
+    //     });
+    // })},[])
   const toggleIsAdded = () => {
    setIsAdded(true)
   };
@@ -36,7 +35,7 @@ const Card = (props) => {
           className="clickAnimation"
         />
       </div>
-      <img width={133} height={112} src={props.imgUrl} alt={props.name} onClick={()=>console.log(props.articleArray)} />
+      <img width={133} height={112} src={props.imgUrl} alt={props.name}/>
       <p>{props.name}</p>
       <div>
         <div>

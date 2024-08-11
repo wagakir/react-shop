@@ -9,7 +9,7 @@ const CartItem = (props) => {
   //   //   }     
   //   // });
   // }
-  React.useEffect(()=>{console.log(props.id);},[])
+  
   return (
     <div className={style.cartItem}>
         

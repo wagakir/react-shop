@@ -2,24 +2,32 @@ import React, { useEffect } from "react";
 import CartItem from "./CartItem";
 // import axios from "axios";
 const Drawer = (props) => {
-  let tempSumm = 0;
+  // let tempSumm = 0;
   // const [cart, setCart] = React.useState([]);
   // React.useEffect(()=>{axios.get("https://6696b23c0312447373c36f73.mockapi.io/cart").then((res)=>{setCart(res.data)})}, [])
-  const [summ, setSumm] = React.useState(0);
+  // const [summ, setSumm] = React.useState(0);
+  // const countCart = () => {
+  //   props.cart.forEach((element) => {
+  //     tempSumm += element.price;
+  //   });
+  //   return tempSumm;
+  // };
+  // const countSumm = async () => {
+  //   const cartResponse = await axios.get(
+  //     "https://6696b23c0312447373c36f73.mockapi.io/cart"
+  //   );
+  //   setSumm(0);
+  //   cartResponse.data.forEach((element) =>
+  //     setSumm((prev) => element.price + prev)
+  //   );
+    
+  // };
+  // const [cartCheck, setCartCheck] = React.useState(true);
 
-  const countCart = () => {
-    props.cart.forEach((element) => {
-      tempSumm += element.price;
-    });
-    return tempSumm;
-  };
-
-  const [cartCheck, setCartCheck] = React.useState(true);
-
-  React.useEffect(() => {
-    setCartCheck(countCart() <= 0);
-    setSumm(countCart());
-  }, [props.cart]);
+  // React.useEffect(() => {
+  //   setCartCheck(countCart() <= 0);
+  //   setSumm(countCart());
+  // }, [props.cart]);
 
   return (
     <div className="overlay">
@@ -55,7 +63,7 @@ const Drawer = (props) => {
               <li>
                 <span>Итого:</span>
                 <div></div>
-                <b>{summ} руб.</b>
+                <b>{props.summ} руб.</b>
               </li>
               <li>
                 <span>Налог 5%</span>
@@ -64,7 +72,7 @@ const Drawer = (props) => {
               </li>
               <button
                 className="buttonGreen clickAnimation "
-                disabled={cartCheck}
+                
               >
                 Оформить заказ
                 <img src="/img/svg/arrow.svg" alt="Arrow" />
