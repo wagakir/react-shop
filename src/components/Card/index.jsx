@@ -2,7 +2,14 @@ import React from "react";
 import styles from "./Card.module.scss";
 import axios from "axios";
 
-const Card = (props) => {
+const Card = ({onClickFavorite,
+articleArray,
+onClickPlus,
+article,
+key,
+name,
+price,
+imgUrl}) => {
   
   const [isAdded, setIsAdded] = React.useState(false);
   const [isLiked, setIsLiked] = React.useState(false);
@@ -14,7 +21,7 @@ const Card = (props) => {
     //   .then((res) => {
     //     res.data.forEach((element) => {
 
-    //       if (element.article === props.article) {
+    //       if (element.article === article) {
     //         setIsAdded(true);
     //       }
     //     });
@@ -28,25 +35,25 @@ const Card = (props) => {
         <img
           onClick={() => {
             toggleIsLiked();
-            props.onClickFavorite()
+            onClickFavorite()
           }}
           src={isLiked ? "/img/svg/liked.svg" : "/img/svg/unliked.svg"}
           alt=""
           className="clickAnimation"
         />
       </div>
-      <img width={133} height={112} src={props.imgUrl} alt={props.name}/>
-      <p>{props.name}</p>
+      <img width={133} height={112} src={imgUrl} alt={name}/>
+      <p>{name}</p>
       <div>
         <div>
           <span>Цена:</span>
-          <b>{props.price} руб.</b>
+          <b>{price} руб.</b>
         </div>
 
         <img
           onClick={() => {
             toggleIsAdded();
-            props.onClickPlus();
+            onClickPlus();
           }}
           className="clickAnimation"
           src={isAdded ? "/img/svg/btn-checked.svg" : "/img/svg/plus.svg"}

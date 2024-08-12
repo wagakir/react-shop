@@ -46,31 +46,35 @@ function App() {
       });
   };
   const onAddToFavorites = async (obj) => {
-
-    
     try {
-      const favoriteResponse = await axios.get('https://6696b23c0312447373c36f73.mockapi.io/favorites');
+      const favoriteResponse = await axios.get(
+        "https://6696b23c0312447373c36f73.mockapi.io/favorites"
+      );
       const favArr = favoriteResponse.data;
-      
-      if (favArr.find((favObj) => Number( favObj.article) === Number(obj.article)) ){
-        let favArrArticle = favoritesArray.filter((item) =>
-          item.article!==obj.article).map((obj)=>(obj.id))
+
+      if (
+        favArr.find((favObj) => Number(favObj.article) === Number(obj.article))
+      ) {
+        let favArrArticle = favArr
+          .filter((item) => item.article !== obj.article)
+          .map((obj) => obj.id);
         console.log(favArrArticle);
-        favArrArticle.forEach((itemArticle)=>{axios.delete(`https://6696b23c0312447373c36f73.mockapi.io/favorites/${itemArticle}`)})
-        setFavoritesArray(favoritesArray.filter((item) =>
-          item.article!==obj.article))
+        favArrArticle.forEach((itemArticle) => {
+          axios.delete(
+            `https://6696b23c0312447373c36f73.mockapi.io/favorites/${itemArticle}`
+          );
+        });
+        setFavoritesArray(
+          favArr
+        );
         // axios.put(
         //   `https://6696b23c0312447373c36f73.mockapi.io/favorites/`,favoritesArray
         // );
-      
       } else {
         const { data } = await axios.post(
           "https://6696b23c0312447373c36f73.mockapi.io/favorites",
           obj
         );
-        
-        
-        
       }
     } catch {
       alert("Не удалось добавить в закладки");
@@ -125,7 +129,8 @@ function App() {
                   onAddToCart={onAddToCart}
                 />
               }
-            />onAddToCart
+            />
+            onAddToCart
             <Route
               path="/favorites"
               element={
@@ -137,7 +142,6 @@ function App() {
                 />
               }
             />
-
             <Route path="*" element={NotFoundPage} />
           </Routes>
         </div>

@@ -1,43 +1,42 @@
-
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 
 const Favorites = (
-  favoritesArray,
+ { favoritesArray,
+
   onAddToFavorites,
   articleArray,
   onAddToCart,
-  ...props
+  ...props}
 ) => {
-  const [items,setItems]=useState([])
-  useEffect(()=>{
+  const [items, setItems] = useState([]);
+  useEffect(() => {
     async function fetchData() {
       const cartResponse = await axios.get(
         "https://6696b23c0312447373c36f73.mockapi.io/favorites"
       );
-      setItems(cartResponse.data);}
-     
-      fetchData()
-  },[])
-   console.log(favoritesArray[1]);
+      setItems(cartResponse.data);
+    }
+
+    fetchData();
+  }, []);
+  console.log(favoritesArray[1]);
   return (
-    
     <div className="goods">
       {items.map((obj) => (
-          <Card
-            onClickFavorite={() => onAddToFavorites(obj)}
-            articleArray={articleArray}
-            article={obj.article}
-            key={obj.id}
-            name={obj.name}
-            price={obj.price}
-            imgUrl={obj.imgUrl}
-            onClickPlus={() => onAddToCart(obj)}
-          ></Card>
-        ))}
+        <Card
+          onClickFavorite={() => onAddToFavorites(obj)}
+          articleArray={articleArray}
+          onClickPlus={() => onAddToCart(obj)}
+          article={obj.article}
+          key={obj.id}
+          name={obj.name}
+          price={obj.price}
+          imgUrl={obj.imgUrl}
+        ></Card>
+      ))}
     </div>
-    
   );
 };
 

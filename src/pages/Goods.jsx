@@ -117,12 +117,12 @@ const Goods = ({
             <Card
               onClickFavorite={() => onAddToFavorites(obj)}
               articleArray={articleArray}
+              onClickPlus={() => onAddToCart(obj)}
               article={obj.article}
-              key={obj.article}
+              key={obj.id}
               name={obj.name}
               price={obj.price}
               imgUrl={obj.imgUrl}
-              onClickPlus={() => onAddToCart(obj)}
             ></Card>
           ))}
       </div>
