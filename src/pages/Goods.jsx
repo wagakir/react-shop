@@ -11,7 +11,7 @@ const Goods = ({
     setSearchValue(event.target.value);
   };
   const [searchValue, setSearchValue] = useState("");
-  const [items, setItems] = useState([
+  const items = [
     {
       name: "Мужские Кроссовки Nike Blazer Mid Suede",
       price: 1232999,
@@ -72,14 +72,19 @@ const Goods = ({
       imgUrl: "/img/clothes/sneakers/image10.jpg",
       article: 10,
     },
-    {
-      name: "aba",
-      price: 1234,
-      imgUrl: "/img/clothes/sneakers/image1.jpg",
-      article: 11,
-    },
-  ]);
+    
+  ];
+  // const articleArray = []
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const cartResponse = await axios.get(
+  //       "https://6696b23c0312447373c36f73.mockapi.io/favorites"
+  //     );
+  //     articleArray = cartResponse.data.map((obj) => obj.article);
+  //   }
 
+  //   fetchData();
+  // }, []);
   return (
     <>
       <div className=" flex justify-between items-center p-[40px 10px] w-full">
@@ -119,10 +124,11 @@ const Goods = ({
               articleArray={articleArray}
               onClickPlus={() => onAddToCart(obj)}
               article={obj.article}
-              key={obj.id}
+              key={obj.article}
               name={obj.name}
               price={obj.price}
               imgUrl={obj.imgUrl}
+              
             ></Card>
           ))}
       </div>

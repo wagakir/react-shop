@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import axios from "axios";
+
 
 const Card = ({onClickFavorite,
 articleArray,
@@ -9,10 +9,11 @@ article,
 key,
 name,
 price,
-imgUrl}) => {
+imgUrl,
+favorited}) => {
   
   const [isAdded, setIsAdded] = React.useState(false);
-  const [isLiked, setIsLiked] = React.useState(false);
+  const [isLiked, setIsLiked] = React.useState(favorited);
   const toggleIsLiked = () => setIsLiked(!isLiked);
   
   // React.useEffect(()=>{

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
-import Card from "./components/Card/index.jsx";
 import Header from "./components/Header.jsx";
 import Drawer from "./components/Drawer.jsx";
 import axios from "axios";
@@ -8,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Goods from "./pages/Goods.jsx";
+import Home from "./pages/Home.jsx";
 
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
@@ -56,7 +56,7 @@ function App() {
         favArr.find((favObj) => Number(favObj.article) === Number(obj.article))
       ) {
         let favArrArticle = favArr
-          .filter((item) => item.article !== obj.article)
+          .filter((item) => item.article === obj.article)
           .map((obj) => obj.id);
         console.log(favArrArticle);
         favArrArticle.forEach((itemArticle) => {
@@ -64,17 +64,17 @@ function App() {
             `https://6696b23c0312447373c36f73.mockapi.io/favorites/${itemArticle}`
           );
         });
-        setFavoritesArray(
-          favArr
-        );
+        setFavoritesArray(favArr);
         // axios.put(
         //   `https://6696b23c0312447373c36f73.mockapi.io/favorites/`,favoritesArray
         // );
       } else {
-        const { data } = await axios.post(
+        await axios.post(
           "https://6696b23c0312447373c36f73.mockapi.io/favorites",
           obj
         );
+        
+        setFavoritesArray(prev=>[...prev,obj]);
       }
     } catch {
       alert("Не удалось добавить в закладки");
@@ -120,8 +120,9 @@ function App() {
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>
+            <Route path="/" element={<Home/>}>
             <Route
-              path="/goods"
+              path="goods"
               element={
                 <Goods
                   onAddToFavorites={onAddToFavorites}
@@ -130,9 +131,9 @@ function App() {
                 />
               }
             />
-            onAddToCart
+
             <Route
-              path="/favorites"
+              path="favorites"
               element={
                 <Favorites
                   favoritesArray={favoritesArray}
@@ -142,7 +143,8 @@ function App() {
                 />
               }
             />
-            <Route path="*" element={NotFoundPage} />
+            </Route>
+            <Route path="" element={NotFoundPage} />
           </Routes>
         </div>
       </div>
