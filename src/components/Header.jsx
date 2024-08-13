@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Header = (props) => {
   return (
     <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
-      <Link to="/goods">
+      <NavLink to="/">
         <div className="headerLeft">
           <img
             src="/img/logo.png"
@@ -17,17 +17,17 @@ const Header = (props) => {
             <p>Онлайн магазин одежды</p>
           </div>
         </div>
-      </Link>
+      </NavLink>
       <ul className="headerRight">
         <li>
-          <Link to="/favorites">
+          <NavLink to="/favorites">
             <img
               height={70}
               width={70}
               src="\img\svg\favorite.svg"
               alt="favorites"
             ></img>
-          </Link>
+          </NavLink>
         </li>
         <li>
           <img height={40} width={40} src="/img/profile.png" alt="profile" />

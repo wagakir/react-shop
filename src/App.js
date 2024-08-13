@@ -7,7 +7,6 @@ import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Goods from "./pages/Goods.jsx";
-import Home from "./pages/Home.jsx";
 
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
@@ -120,9 +119,9 @@ function App() {
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>
-            <Route path="/" element={<Home/>}>
+            
             <Route
-              path="goods"
+              path="/"
               element={
                 <Goods
                   onAddToFavorites={onAddToFavorites}
@@ -133,7 +132,7 @@ function App() {
             />
 
             <Route
-              path="favorites"
+              path="/favorites"
               element={
                 <Favorites
                   favoritesArray={favoritesArray}
@@ -143,7 +142,7 @@ function App() {
                 />
               }
             />
-            </Route>
+            
             <Route path="" element={NotFoundPage} />
           </Routes>
         </div>
