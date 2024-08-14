@@ -3,7 +3,12 @@ import { NavLink } from "react-router-dom";
 const Header = (props) => {
   return (
     <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
-      <NavLink to="/">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+         isActive ? "active" : "clickAnimation"
+        }
+      >
         <div className="headerLeft">
           <img
             src="/img/logo.png"
@@ -20,7 +25,12 @@ const Header = (props) => {
       </NavLink>
       <ul className="headerRight">
         <li>
-          <NavLink to="/favorites">
+          <NavLink
+            to="/favorites"
+            className={({ isActive }) =>
+              isActive ? "active" : "clickAnimation"
+             }
+          >
             <img
               height={70}
               width={70}

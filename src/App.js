@@ -12,12 +12,13 @@ function App() {
   // const [searchedItems, setSearchedItems] = useState([])
   // useEffect(()=>{}, [])
   // const [cart, setCart] = useState()
-
+  const [items, setItems] = useState([]);
   const [summ, setSumm] = useState(0);
   const [articleArray, setArticleArray] = useState([]);
-
+  const [favoritesArticleArray, setFavoritesArticleArray] = useState([]);
   const [cart, setCart] = useState([]);
   const [favoritesArray, setFavoritesArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   // useEffect(()=>{setSearchedItems(items.filter((obj) => obj.name === searchValue))}, [searchValue])
   // достать соседа
   // const callBackSumm = (prev) =>{
@@ -26,11 +27,80 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true)
       const cartResponse = await axios.get(
         "https://6696b23c0312447373c36f73.mockapi.io/cart"
       );
+      const favoriteResponse = await axios.get(
+        "https://6696b23c0312447373c36f73.mockapi.io/favorites"
+      );
+      setIsLoading(false)
+      setFavoritesArray(favoriteResponse.data);
       setCart(cartResponse.data);
       setArticleArray(cartResponse.data.map((obj) => obj.article));
+      setFavoritesArticleArray(favoriteResponse.data.map((obj) => obj.article));
+      setItems([
+        {
+          name: "Мужские Кроссовки Nike Blazer Mid Suede",
+          price: 1232999,
+          imgUrl: "/img/clothes/sneakers/image1.jpg",
+          article: 1,
+        },
+        {
+          name: "Мужские Кроссовки Nike Air Max 270",
+          price: 12999,
+          imgUrl: "/img/clothes/sneakers/image2.jpg",
+          article: 2,
+        },
+        {
+          name: "Мужские Кроссовки Nike Blazer Mid Suede",
+          price: 15999,
+          imgUrl: "/img/clothes/sneakers/image3.jpg",
+          article: 3,
+        },
+        {
+          name: "Кроссовки Puma X Aka Boku Future Rider",
+          price: 8999,
+          imgUrl: "/img/clothes/sneakers/image4.jpg",
+          article: 4,
+        },
+        {
+          name: "Мужские Кроссовки Under Armour Curry 8",
+          price: 15199,
+          imgUrl: "/img/clothes/sneakers/image5.jpg",
+          article: 5,
+        },
+        {
+          name: "Мужские Кроссовки Nike Kyrie 7",
+          price: 11299,
+          imgUrl: "/img/clothes/sneakers/image6.jpg",
+          article: 6,
+        },
+        {
+          name: "Мужские Кроссовки Jordan Air Jordan 11",
+          price: 16499,
+          imgUrl: "/img/clothes/sneakers/image7.jpg",
+          article: 7,
+        },
+        {
+          name: "Мужские Кроссовки Nike LeBron XVIII",
+          price: 13999,
+          imgUrl: "/img/clothes/sneakers/image8.jpg",
+          article: 8,
+        },
+        {
+          name: "Мужские Кроссовки Nike Lebron XVIII Low",
+          price: 9999,
+          imgUrl: "/img/clothes/sneakers/image9.jpg",
+          article: 9,
+        },
+        {
+          name: "Мужские Кроссовки Nike Kyrie Flytrap IV",
+          price: 11299,
+          imgUrl: "/img/clothes/sneakers/image10.jpg",
+          article: 10,
+        },
+      ]);
     }
     fetchData();
   }, []);
@@ -57,23 +127,31 @@ function App() {
         let favArrArticle = favArr
           .filter((item) => item.article === obj.article)
           .map((obj) => obj.id);
-        console.log(favArrArticle);
+        
         favArrArticle.forEach((itemArticle) => {
           axios.delete(
             `https://6696b23c0312447373c36f73.mockapi.io/favorites/${itemArticle}`
           );
+          // favArr.splice(favArr.indexOf(itemArticle))
         });
-        setFavoritesArray(favArr);
-        // axios.put(
-        //   `https://6696b23c0312447373c36f73.mockapi.io/favorites/`,favoritesArray
-        // );
+        setFavoritesArray(favArr
+          .filter((item) => item.article !== obj.article)
+          .map((obj) => obj))
+        setFavoritesArticleArray(favArr
+          .filter((item) => item.article !== obj.article)
+          .map((obj) => obj.article))
+        // setFavoritesArray((prev)=>prev.filter((item) => item.article !== obj.article)
+        // .map((obj) => obj.id));
+        
       } else {
         await axios.post(
           "https://6696b23c0312447373c36f73.mockapi.io/favorites",
           obj
         );
-        
-        setFavoritesArray(prev=>[...prev,obj]);
+        if(!favoritesArray.includes(obj))
+        {setFavoritesArray([...favArr, obj]);
+          setFavoritesArticleArray([...favArr.map((obj) => obj.article),obj.article])
+        }
       }
     } catch {
       alert("Не удалось добавить в закладки");
@@ -119,14 +197,16 @@ function App() {
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>
-            
             <Route
               path="/"
               element={
                 <Goods
+                  favoritesArticleArray={favoritesArticleArray}
                   onAddToFavorites={onAddToFavorites}
                   articleArray={articleArray}
                   onAddToCart={onAddToCart}
+                  items={items}
+                  isLoading={isLoading}
                 />
               }
             />
@@ -142,8 +222,8 @@ function App() {
                 />
               }
             />
-            
-            <Route path="" element={NotFoundPage} />
+
+            <Route path="*" element={<NotFoundPage></NotFoundPage>} />
           </Routes>
         </div>
       </div>
