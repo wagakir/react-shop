@@ -5,11 +5,10 @@ import { AppContext } from "../App";
 const Favorites = ({
  
   onAddToFavorites,
-  articleArray,
+
   onAddToCart,
  
 }) => {
-  const {favoritesArray} = React.useContext(AppContext)
   const {favoritesArray,articleArray} = React.useContext(AppContext)
   
   // const [items, setItems] = useState([]);

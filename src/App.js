@@ -7,7 +7,6 @@ import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Goods from "./pages/Goods.jsx";
-import CartItem from "./components/CartItem/index.jsx";
 
 export const AppContext = React.createContext({});
 function App() {
@@ -180,7 +179,7 @@ function App() {
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
 
   return (
-    <AppContext.Provider value={{items,summ,articleArray,favoritesArray,isLoading}}>
+    <AppContext.Provider value={{items,summ,articleArray,favoritesArray,isLoading, favoritesArticleArray}}>
       
       <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
         {drawerVisible && (
@@ -205,12 +204,8 @@ function App() {
               path="/"
               element={
                 <Goods
-                  favoritesArticleArray={favoritesArticleArray}
                   onAddToFavorites={onAddToFavorites}
-                  articleArray={articleArray}
                   onAddToCart={onAddToCart}
-                  items={items}
-                  isLoading={isLoading}
                 />
               }
             />

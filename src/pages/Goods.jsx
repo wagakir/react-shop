@@ -1,47 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Card from "../components/Card";
-
+import { AppContext } from "../App";
 // import axios from "axios";
-const Goods = ({
-  onAddToFavorites,
-  onAddToCart,
-  items,
-  articleArray,
-  favoritesArticleArray,
-  isLoading,
-  ...props
-}) => {
+const Goods = ({ onAddToFavorites, onAddToCart }) => {
+  const { isLoading, items, favoritesArticleArray, articleArray } =
+    useContext(AppContext);
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
   const [searchValue, setSearchValue] = useState("");
 
   const renderItems = () => {
-    
     console.log(Array(10));
     console.log(Array(10).length);
-    const  filteredItems =items
-    .filter((item) =>
+    const filteredItems = items.filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
-    )
-    return (isLoading
-      ? [0,0,0,0,0,0,0,0]
-      : filteredItems)
-          .map((obj) => (
-            <Card
-              onClickFavorite={() => onAddToFavorites(obj)}
-              articleArray={articleArray}
-              onClickPlus={() => onAddToCart(obj)}
-              article={obj.article}
-              key={obj.article}
-              name={obj.name}
-              price={obj.price}
-              imgUrl={obj.imgUrl}
-              added={articleArray.includes(obj.article)}
-              liked={favoritesArticleArray.includes(obj.article)}
-              loading={isLoading}
-            ></Card>
-          ));
+    );
+    return (isLoading ? [0, 0, 0, 0, 0, 0, 0, 0] : filteredItems).map((obj) => (
+      <Card
+        onClickFavorite={() => onAddToFavorites(obj)}
+        articleArray={articleArray}
+        onClickPlus={() => onAddToCart(obj)}
+        article={obj.article}
+        key={obj.article}
+        name={obj.name}
+        price={obj.price}
+        imgUrl={obj.imgUrl}
+        added={articleArray.includes(obj.article)}
+        liked={favoritesArticleArray.includes(obj.article)}
+      ></Card>
+    ));
   };
   return (
     <>
