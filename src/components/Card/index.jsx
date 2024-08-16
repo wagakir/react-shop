@@ -1,20 +1,15 @@
 import React from "react";
 import styles from "./Card.module.scss";
-
+import { AppContext } from "../../App";
 import ContentLoader from "react-content-loader";
 const Card = ({onClickFavorite,
-articleArray,
 onClickPlus,
-article,
-
 name,
 price,
 imgUrl,
-favorited,
 added,
-liked,
-loading}) => {
-  
+liked}) => {
+  const {isLoading} = React.useContext(AppContext)
   const [isAdded, setIsAdded] = React.useState(added);
   const [isLiked, setIsLiked] = React.useState(liked);
   const toggleIsLiked = () => setIsLiked(!isLiked);
@@ -36,7 +31,7 @@ loading}) => {
   return (
     
     <div className={styles.card}>
-    {  loading ? <ContentLoader 
+    {  isLoading ? <ContentLoader 
     speed={1.5}
     width={158}
     height={238}

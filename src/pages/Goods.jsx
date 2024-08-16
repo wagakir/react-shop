@@ -39,7 +39,6 @@ const Goods = ({
               imgUrl={obj.imgUrl}
               added={articleArray.includes(obj.article)}
               liked={favoritesArticleArray.includes(obj.article)}
-              loading={isLoading}
             ></Card>
           ));
   };

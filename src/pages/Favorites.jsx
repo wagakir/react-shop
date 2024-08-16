@@ -5,11 +5,12 @@ import { AppContext } from "../App";
 const Favorites = ({
  
   onAddToFavorites,
-  articleArray,
+  
   onAddToCart,
  
 }) => {
-  const {favoritesArray} = React.useContext(AppContext)
+  const {favoritesArray,articleArray} = React.useContext(AppContext)
+  
   // const [items, setItems] = useState([]);
   // useEffect(() => {
   //   async function fetchData() {
@@ -27,7 +28,7 @@ const Favorites = ({
       {favoritesArray.length>0 ? 
       <>
         <div className=" flex justify-between items-start p-[40px 10px] w-full">
-        <h1 className="pl-6 truncate">Мои избранные </h1>
+        <h1 className="pl-3  truncate">Мои избранные </h1>
       </div>
       <div className="goods">
         {favoritesArray.map((obj) => (
