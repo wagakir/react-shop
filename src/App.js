@@ -8,7 +8,6 @@ import Favorites from "./pages/Favorites.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Goods from "./pages/Goods.jsx";
 
-
 function App() {
   // const [searchedItems, setSearchedItems] = useState([])
   // useEffect(()=>{}, [])
@@ -214,6 +213,7 @@ function App() {
               path="/favorites"
               element={
                 <Favorites
+                  favoritesArray={favoritesArray}
                   onAddToFavorites={onAddToFavorites}
                   articleArray={articleArray}
                   onAddToCart={onAddToCart}
