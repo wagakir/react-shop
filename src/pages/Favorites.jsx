@@ -1,16 +1,15 @@
 import React from "react";
 import Card from "../components/Card";
-import { AppContext } from "../App";
+
 
 const Favorites = ({
- 
+  favoritesArray,
   onAddToFavorites,
   
   onAddToCart,
- 
+  ...props
 }) => {
-  const {favoritesArray,articleArray} = React.useContext(AppContext)
-  
+  const {favoritesArray} = React.useContext(AppContext)
   // const [items, setItems] = useState([]);
   // useEffect(() => {
   //   async function fetchData() {

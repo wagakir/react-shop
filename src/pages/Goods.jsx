@@ -17,15 +17,12 @@ const Goods = ({
   const [searchValue, setSearchValue] = useState("");
 
   const renderItems = () => {
-    
-    console.log(Array(10));
-    console.log(Array(10).length);
     const  filteredItems =items
     .filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
     )
     return (isLoading
-      ? [0,0,0,0,0,0,0,0]
+      ? Array(10)
       : filteredItems)
           .map((obj) => (
             <Card
