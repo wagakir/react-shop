@@ -29,6 +29,7 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
+      try{
       setIsLoading(true)
       const cartResponse = await axios.get(
         "https://6696b23c0312447373c36f73.mockapi.io/cart"
@@ -102,7 +103,9 @@ function App() {
           imgUrl: "/img/clothes/sneakers/image10.jpg",
           article: 10,
         },
-      ]);
+      ]);}catch{alert(`не удалось загрузить данные с сервера, ошибка:
+        ""`)}
+
     }
     fetchData();
   }, []);
@@ -110,11 +113,11 @@ function App() {
     countSumm();
   }, [cart]);
   const onAddToCart = (obj) => {
+    setCart((prev) => [...prev, obj]);
     axios
       .post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
-      .then((res) => {
-        setCart((prev) => [...prev, res.data]);
-      });
+      .catch((err)=>alert(`не удалось доваить в корзину, ошибка:
+         "${err}"`))
   };
   const onAddToFavorites = async (obj) => {
     try {
@@ -159,19 +162,18 @@ function App() {
       alert("Не удалось добавить в закладки");
     }
   };
-  const onRemoveItem = async (id) => {
-    await axios.delete(
+  const onRemoveItem = (id) => {
+    setCart((prev) => prev.filter((item) => id !== item.id));
+    axios.delete(
       `https://6696b23c0312447373c36f73.mockapi.io/cart/${id}`
     );
-    setCart((prev) => prev.filter((item) => id !== item.id));
+    
   };
 
-  const countSumm = async () => {
-    const cartResponse = await axios.get(
-      "https://6696b23c0312447373c36f73.mockapi.io/cart"
-    );
+  const countSumm =  () => {
+    
     setSumm(0);
-    cartResponse.data.forEach((element) =>
+    cart.forEach((element) =>
       setSumm((prev) => element.price + prev)
     );
   };
