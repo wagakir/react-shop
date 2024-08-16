@@ -1,0 +1,21 @@
+.cartItem {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 10px;
+
+    div {
+      flex: 1;
+      
+      p {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+      b {
+        font-size: 14px;
+      }
+    }
+  }

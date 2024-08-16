@@ -7,8 +7,11 @@ import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 import Goods from "./pages/Goods.jsx";
+import CartItem from "./components/CartItem/index.jsx";
 
+export const AppContext = React.createContext({});
 function App() {
+
   // const [searchedItems, setSearchedItems] = useState([])
   // useEffect(()=>{}, [])
   // const [cart, setCart] = useState()
@@ -132,6 +135,7 @@ function App() {
           axios.delete(
             `https://6696b23c0312447373c36f73.mockapi.io/favorites/${itemArticle}`
           );
+          // favArr.splice(favArr.indexOf(itemArticle))
         });
         setFavoritesArray(favArr
           .filter((item) => item.article !== obj.article)
@@ -139,7 +143,8 @@ function App() {
         setFavoritesArticleArray(favArr
           .filter((item) => item.article !== obj.article)
           .map((obj) => obj.article))
-
+        // setFavoritesArray((prev)=>prev.filter((item) => item.article !== obj.article)
+        // .map((obj) => obj.id));
         
       } else {
         await axios.post(
@@ -175,7 +180,8 @@ function App() {
   const toggleFieldset = () => setDrawerVisible(!drawerVisible);
 
   return (
-    <>
+    <AppContext.Provider value={{items,summ,articleArray,favoritesArray,isLoading}}>
+      
       <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
         {drawerVisible && (
           <Drawer
@@ -213,7 +219,6 @@ function App() {
               path="/favorites"
               element={
                 <Favorites
-                  favoritesArray={favoritesArray}
                   onAddToFavorites={onAddToFavorites}
                   articleArray={articleArray}
                   onAddToCart={onAddToCart}
@@ -225,7 +230,8 @@ function App() {
           </Routes>
         </div>
       </div>
-    </>
+    
+    </AppContext.Provider>
   );
 }
 

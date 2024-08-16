@@ -1,15 +1,20 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import { AppContext } from "../../App";
+
 import ContentLoader from "react-content-loader";
 const Card = ({onClickFavorite,
+articleArray,
 onClickPlus,
+article,
+
 name,
 price,
 imgUrl,
+favorited,
 added,
-liked}) => {
-  const {isLoading} = React.useContext(AppContext)
+liked,
+loading}) => {
+  
   const [isAdded, setIsAdded] = React.useState(added);
   const [isLiked, setIsLiked] = React.useState(liked);
   const toggleIsLiked = () => setIsLiked(!isLiked);
@@ -31,23 +36,24 @@ liked}) => {
   return (
     
     <div className={styles.card}>
-    {  isLoading ? <ContentLoader 
+    {  loading ? <ContentLoader 
     speed={1.5}
-    width={239}
-    height={318}
-    viewBox="0 0 239 318"
+    width={158}
+    height={238}
+    viewBox="0 0 158 238"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
     className="self-center"
     
   >
-    <rect x="57" y="30" rx="10" ry="10" width="133" height="112" /> 
-    <rect x="40" y="150" rx="5" ry="5" width="160" height="18" /> 
-    <rect x="40" y="174" rx="5" ry="5" width="160" height="18" /> 
-    <rect x="40" y="198" rx="5" ry="5" width="160" height="18" /> 
-    <rect x="40" y="270" rx="5" ry="5" width="77" height="20" /> 
-    <rect x="40" y="246" rx="0" ry="0" width="45" height="18" /> 
-    <rect x="165" y="256" rx="7" ry="7" width="33" height="33" />
+    <rect x="5" y="10" rx="10" ry="10" width="133" height="102" /> 
+    <rect x="5" y="122" rx="10" ry="10" width="160" height="16" /> 
+    <rect x="5" y="146" rx="10" ry="10" width="160" height="16" /> 
+    <rect x="5" y="170" rx="10" ry="10" width="160" height="16" /> 
+    <rect x="5" y="195" rx="10" ry="10" width="45" height="14" /> 
+    <rect x="5" y="215" rx="10" ry="10" width="90" height="18" /> 
+   
+    <rect x="128" y="207" rx="7" ry="7" width="31" height="31" />
   </ContentLoader>:<> <div className="absolute">
         <img
           onClick={() => {
