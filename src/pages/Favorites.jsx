@@ -10,6 +10,8 @@ const Favorites = ({
  
 }) => {
   const {favoritesArray} = React.useContext(AppContext)
+  const {favoritesArray,articleArray} = React.useContext(AppContext)
+  
   // const [items, setItems] = useState([]);
   // useEffect(() => {
   //   async function fetchData() {
