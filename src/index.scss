@@ -36,9 +36,8 @@ li {
 
 .headerLeft {
   display: flex;
-  justify-content: space-between;
-  height: 50px;
-  min-width: 245px;
+  justify-content: space-between;  
+  padding: 5px;
   img{
     opacity: 0.9;
   }

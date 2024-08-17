@@ -7,20 +7,16 @@ onClickPlus,
 name,
 price,
 imgUrl,
-favorited,
-added,
-liked,
+article,
+
 }) => {
-  const {isLoading} = useContext(AppContext)
-  const [isAdded, setIsAdded] = React.useState(added);
-  const [isLiked, setIsLiked] = React.useState(liked);
-  const toggleIsLiked = () => setIsLiked(!isLiked);
+  const {isLoading,checkCardAdded,checkFavoriteAdded} = useContext(AppContext)
+  const toggleIsLiked = () => checkFavoriteAdded(article);
   
-  React.useEffect(()=>{
-    
-    },[])
+  
+  // React.useEffect(()=>{},[])
   const toggleIsAdded = () => {
-   setIsAdded(true)
+    checkCardAdded(article) 
   };
   return (
     
@@ -49,7 +45,7 @@ liked,
             toggleIsLiked();
             onClickFavorite()
           }}
-          src={isLiked ? "/img/svg/liked.svg" : "/img/svg/unliked.svg"}
+          src={checkFavoriteAdded(article) ? "/img/svg/liked.svg" : "/img/svg/unliked.svg"}
           alt=""
           className="clickAnimation"
         />
@@ -68,7 +64,7 @@ liked,
             onClickPlus();
           }}
           className="clickAnimation"
-          src={isAdded ? "/img/svg/btn-checked.svg" : "/img/svg/plus.svg"}
+          src={checkCardAdded(article) ? "/img/svg/btn-checked.svg" : "/img/svg/plus.svg"}
           alt="plus"
         ></img>
       </div></>}

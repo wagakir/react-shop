@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import { AppContext } from "../App";
 // import axios from "axios";
 const Goods = ({ onAddToFavorites, onAddToCart }) => {
-  const { isLoading, items, favoritesArticleArray, articleArray } =
+  const { isLoading, items} =
     useContext(AppContext);
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
@@ -11,23 +11,18 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
   const [searchValue, setSearchValue] = useState("");
 
   const renderItems = () => {
-    console.log(Array(10));
-    console.log(Array(10).length);
     const filteredItems = items.filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-    return (isLoading ? [0, 0, 0, 0, 0, 0, 0, 0] : filteredItems).map((obj) => (
+    return (isLoading ? [{article:0}, {article:1}, {article:2}, {article:3}, {article:4}, {article:5}, {article:6}, {article:7  }] : filteredItems).map((obj) => (
       <Card
         onClickFavorite={() => onAddToFavorites(obj)}
-        articleArray={articleArray}
         onClickPlus={() => onAddToCart(obj)}
         article={obj.article}
         key={obj.article}
         name={obj.name}
         price={obj.price}
         imgUrl={obj.imgUrl}
-        added={articleArray.includes(obj.article)}
-        liked={favoritesArticleArray.includes(obj.article)}
       ></Card>
     ));
   };

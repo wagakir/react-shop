@@ -1,78 +1,76 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import CartItem from "./CartItem";
-// import axios from "axios";
+import { AppContext } from "../App";
+import Info from "./Info";
+import axios from "axios";
 const Drawer = (props) => {
-  // let tempSumm = 0;
-  // const [cart, setCart] = React.useState([]);
-  // React.useEffect(()=>{axios.get("https://6696b23c0312447373c36f73.mockapi.io/cart").then((res)=>{setCart(res.data)})}, [])
-  // const [summ, setSumm] = React.useState(0);
-  // const countCart = () => {
-  //   props.cart.forEach((element) => {
-  //     tempSumm += element.price;
-  //   });
-  //   return tempSumm;
-  // };
-  // const countSumm = async () => {
-  //   const cartResponse = await axios.get(
-  //     "https://6696b23c0312447373c36f73.mockapi.io/cart"
-  //   );
-  //   setSumm(0);
-  //   cartResponse.data.forEach((element) =>
-  //     setSumm((prev) => element.price + prev)
-  //   );
-    
-  // };
-  // const [cartCheck, setCartCheck] = React.useState(true);
-
-  // React.useEffect(() => {
-  //   setCartCheck(countCart() <= 0);
-  //   setSumm(countCart());
-  // }, [props.cart]);
-
+  const { onRemoveItem, summ, cart, toggleFieldSet, setCart } =
+    useContext(AppContext);
+  const [ isComplete, setIsComplete] = useState(false);
+  const [ isLoading, setIsLoading] = useState(false)
+  const clickOrder = async() => {
+    try{
+      setIsLoading(true)
+    await cart.forEach(element => {
+      setCart((prev) => prev.filter((item) => element.id !== item.id));
+      axios.delete(
+      `https://6696b23c0312447373c36f73.mockapi.io/cart/${element.id}`
+    );
+    setIsLoading(false)
+    });
+    setIsComplete(true);
+    setCart([]);}catch{alert("Не удалось создать заказ")}
+  };
   return (
     <div className="overlay">
       <div className="drawer">
         <h2 className="flex justify-between">
           Корзина
           <img
-            onClick={props.onCloseCart}
+            onClick={() => toggleFieldSet()}
             className="removeBtn"
             src="/img/svg/btn-remove.svg"
             alt="Remove"
           />
         </h2>
 
-        {props.cart.length > 0 ? (
+        {cart.length > 0 ? (
           <div className="flex flex-col flex-1 ">
             <div className="overflow-auto flex-1 mt-3">
-              {props.cart.map((obj, index) => (
+              {cart.map((obj, index) => (
                 <CartItem
                   onRemove={() => {
-                    props.onRemove(obj.id);
+                    onRemoveItem(obj.id);
                   }}
                   name={obj.name}
                   price={obj.price}
                   imgUrl={obj.imgUrl}
-                  // itemsCart={obj.itemsCart}
                   key={obj.id}
                   id={obj.id}
+                  article={obj.article}
                 />
               ))}
             </div>
             <ul className="cartTotalBlock">
               <li>
-                <span>Итого:</span>
+                <span>Товаров на: </span>
                 <div></div>
-                <b>{props.summ} руб.</b>
+                <b>{summ} руб.</b>
               </li>
               <li>
-                <span>Налог 5%</span>
+                <span>Налог (15%) :</span>
                 <div></div>
-                <b>1000 руб. </b>
+                <b>{Math.round(summ * 0.15)} руб.</b>
+              </li>
+              <li>
+                <span>Итого:</span>
+                <div></div>
+                <b>{Math.round(summ * 0.15) + summ} руб.</b>
               </li>
               <button
                 className="buttonGreen clickAnimation "
-                
+                onClick={()=>clickOrder()}
+                disabled={isLoading}
               >
                 Оформить заказ
                 <img src="/img/svg/arrow.svg" alt="Arrow" />
@@ -80,29 +78,11 @@ const Drawer = (props) => {
             </ul>
           </div>
         ) : (
-          <div className="flex-1 flex-col flex justify-center align-center m-3">
-            <img
-              src="./img/svg/emptyCart.svg"
-              alt="empty box"
-              height={160}
-              width={160}
-              className="self-center"
-            />
-
-            <h3 className="text-center text-2xl font-bold p-2 pb-0">
-              Корзина пустая
-            </h3>
-            <p className="opacity-60 p-2">
-              Добавьте хотя бы пару кроссовок чтобы сделать заказ
-            </p>
-            {/* <div className="h-5 w-5 bg-black"></div><div className="h-5 w-5 bg-black"></div><div className="h-5 w-5 bg-black"></div> */}
-            <button
-              className="buttonGreen clickAnimation h-fit p-3 text-xl"
-              onClick={props.onCloseCart}
-            >
-              Вернуться к товарам
-            </button>
-          </div>
+          <Info
+            title={isComplete ?"Заказ оформлен!": "Корзина пустая"}
+            description={isComplete?"Ваш заказ №13 готов":"Добавьте хотя бы пару кроссовок чтобы сделать заказ"}
+            imageUrl={isComplete?"./img/svg/orderComplete.svg":"./img/svg/emptyCart.svg"}
+          />
         )}
       </div>
     </div>
