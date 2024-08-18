@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.scss";
 import Header from "./components/Header.jsx";
-import Drawer from "./components/Drawer.jsx";
+import Drawer from "./components/Drawer";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
@@ -192,17 +192,9 @@ function App() {
       }}
     >
       <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-        {drawerVisible && (
-          <Drawer
-            
-            onRemove={onRemoveItem}
-            
+          <Drawer isVisible={drawerVisible}
           />
-          
-        )}
-        <Header
-          
-        />
+        <Header/>
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>

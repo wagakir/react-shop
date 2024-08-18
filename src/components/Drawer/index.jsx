@@ -1,9 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
-import CartItem from "./CartItem";
-import { AppContext } from "../App";
-import Info from "./Info";
 import axios from "axios";
-const Drawer = (props) => {
+
+import CartItem from "../CartItem/index";
+import { AppContext } from "../../App";
+import Info from "../Info";
+
+import styles from "./Drawer.module.scss";
+
+
+const Drawer = (isVisible) => {
   useEffect(() => {
     document.getElementsByTagName("body");
   }, []);
@@ -35,8 +40,8 @@ const Drawer = (props) => {
     setIsLoading(false);
   };
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${isVisible ? styles.overlayVisible: ''}`}>
+      <div className={styles.drawer}>
         <h2 className="flex justify-between">
           Корзина
           <img
