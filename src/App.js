@@ -11,7 +11,6 @@ import Goods from "./pages/Goods.jsx";
 export const AppContext = React.createContext({});
 function App() {
   const [items, setItems] = useState([]);
-  const [summ, setSumm] = useState(0);
   const [cart, setCart] = useState([]);
   const [favoritesArray, setFavoritesArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -99,9 +98,7 @@ function App() {
     }
     fetchData();
   }, []);
-  useEffect(() => {
-    countSumm();
-  }, [cart]);
+  
   const onAddToCart = (obj) => {
     axios
       .post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
@@ -169,10 +166,7 @@ function App() {
       return false;
     }
   };
-  const countSumm = () => {
-    setSumm(0);
-    cart.forEach((element) => setSumm((prev) => element.price + prev));
-  };
+ 
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldSet = (element) => {
     setDrawerVisible(element);
@@ -184,7 +178,7 @@ function App() {
     <AppContext.Provider
       value={{
         items,
-        summ,
+       
         favoritesArray,
         isLoading,
         cart,
@@ -212,6 +206,7 @@ function App() {
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>
+            
             <Route
               path="/"
               element={

@@ -8,10 +8,11 @@ const Drawer = (props) => {
     document.getElementsByTagName("body");
   }, []);
   const delay = (ms)=>new Promise((resolve)=>setTimeout(resolve, ms))
-  const { onRemoveItem, summ, cart, toggleFieldSet, setCart } =
+  const { onRemoveItem, cart, toggleFieldSet, setCart } =
     useContext(AppContext);
   const [isComplete, setIsComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const summ = cart.reduce((sum,obj)=>obj.price+sum,0)
   const clickOrder = async () => {
     try {
       setIsLoading(true);

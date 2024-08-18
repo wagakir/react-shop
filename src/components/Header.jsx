@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../App";
 const Header = (props) => {
-  const { summ, toggleFieldSet } = useContext(AppContext);
+  const {cart, toggleFieldSet } = useContext(AppContext);
+  const summ = cart.reduce((sum,obj)=>obj.price+sum,0)
   return (
     <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
       <NavLink
