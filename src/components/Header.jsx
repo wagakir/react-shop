@@ -40,7 +40,7 @@ const Header = (props) => {
           {summ > 0 ? <span>{summ} руб.</span> : <span>Корзина пуста</span>}
         </li>
         <li onClick={() => {
-            toggleFieldSet();
+            toggleFieldSet(true);
           }}>
           <img
             height={50}

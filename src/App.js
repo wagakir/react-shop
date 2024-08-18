@@ -174,7 +174,11 @@ function App() {
     cart.forEach((element) => setSumm((prev) => element.price + prev));
   };
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const toggleFieldSet = () => setDrawerVisible(!drawerVisible);
+  const toggleFieldSet = (element) => {
+    setDrawerVisible(element);
+    if (element){
+    document.body.className='overflow-hidden'}
+    else{document.body.className=''}}
 
   return (
     <AppContext.Provider

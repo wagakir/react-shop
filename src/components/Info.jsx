@@ -22,7 +22,7 @@ const Info = ({title,description,imageUrl}) => {
             {/* <div className="h-5 w-5 bg-black"></div><div className="h-5 w-5 bg-black"></div><div className="h-5 w-5 bg-black"></div> */}
             <button
               className="buttonGreen clickAnimation h-fit p-3 text-xl"
-              onClick={()=>toggleFieldSet()}
+              onClick={()=>toggleFieldSet(false)}
             >
               Вернуться к товарам
             </button>

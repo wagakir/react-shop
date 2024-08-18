@@ -1,25 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import CartItem from "./CartItem";
 import { AppContext } from "../App";
 import Info from "./Info";
 import axios from "axios";
 const Drawer = (props) => {
+  useEffect(() => {
+    document.getElementsByTagName("body");
+  }, []);
+  const delay = (ms)=>new Promise((resolve)=>setTimeout(resolve, ms))
   const { onRemoveItem, summ, cart, toggleFieldSet, setCart } =
     useContext(AppContext);
-  const [ isComplete, setIsComplete] = useState(false);
-  const [ isLoading, setIsLoading] = useState(false)
-  const clickOrder = async() => {
-    try{
-      setIsLoading(true)
-    await cart.forEach(element => {
-      setCart((prev) => prev.filter((item) => element.id !== item.id));
-      axios.delete(
-      `https://6696b23c0312447373c36f73.mockapi.io/cart/${element.id}`
-    );
-    setIsLoading(false)
-    });
-    setIsComplete(true);
-    setCart([]);}catch{alert("Не удалось создать заказ")}
+  const [isComplete, setIsComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const clickOrder = async () => {
+    try {
+      setIsLoading(true);
+      for (let i = 0; i < cart.length; i++){
+        const item = cart[i]
+        await axios.delete(`https://6696b23c0312447373c36f73.mockapi.io/cart/${item.id}`)
+        await delay(300)
+      }
+      // await cart.forEach((element) => { 
+      //   setCart((prev) => prev.filter((item) => element.id !== item.id));
+      //   axios.delete(
+      //     `https://6696b23c0312447373c36f73.mockapi.io/cart/${element.id}`
+      //   );
+      // });
+      setIsComplete(true);
+      setCart([]);
+    } catch {
+      alert("Не удалось создать заказ");
+    }
+    setIsLoading(false);
   };
   return (
     <div className="overlay">
@@ -27,7 +39,7 @@ const Drawer = (props) => {
         <h2 className="flex justify-between">
           Корзина
           <img
-            onClick={() => toggleFieldSet()}
+            onClick={() => toggleFieldSet(false)}
             className="removeBtn"
             src="/img/svg/btn-remove.svg"
             alt="Remove"
@@ -35,7 +47,7 @@ const Drawer = (props) => {
         </h2>
 
         {cart.length > 0 ? (
-          <div className="flex flex-col flex-1 ">
+          <div className="flex flex-col flex-1 overflow-auto">
             <div className="overflow-auto flex-1 mt-3">
               {cart.map((obj, index) => (
                 <CartItem
@@ -69,7 +81,7 @@ const Drawer = (props) => {
               </li>
               <button
                 className="buttonGreen clickAnimation "
-                onClick={()=>clickOrder()}
+                onClick={() => clickOrder()}
                 disabled={isLoading}
               >
                 Оформить заказ
@@ -79,9 +91,17 @@ const Drawer = (props) => {
           </div>
         ) : (
           <Info
-            title={isComplete ?"Заказ оформлен!": "Корзина пустая"}
-            description={isComplete?"Ваш заказ №13 готов":"Добавьте хотя бы пару кроссовок чтобы сделать заказ"}
-            imageUrl={isComplete?"./img/svg/orderComplete.svg":"./img/svg/emptyCart.svg"}
+            title={isComplete ? "Заказ оформлен!" : "Корзина пустая"}
+            description={
+              isComplete
+                ? "Ваш заказ №13 готов"
+                : "Добавьте хотя бы пару кроссовок чтобы сделать заказ"
+            }
+            imageUrl={
+              isComplete
+                ? "./img/svg/orderComplete.svg"
+                : "./img/svg/emptyCart.svg"
+            }
           />
         )}
       </div>
