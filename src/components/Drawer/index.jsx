@@ -8,12 +8,12 @@ import Info from "../Info";
 import styles from "./Drawer.module.scss";
 
 
-const Drawer = (isVisible) => {
+const Drawer = () => {
   useEffect(() => {
     document.getElementsByTagName("body");
   }, []);
   const delay = (ms)=>new Promise((resolve)=>setTimeout(resolve, ms))
-  const { onRemoveItem, cart, toggleFieldSet, setCart } =
+  const { onRemoveItem, cart, toggleFieldSet, setCart,drawerVisible } =
     useContext(AppContext);
   const [isComplete, setIsComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,7 @@ const Drawer = (isVisible) => {
     setIsLoading(false);
   };
   return (
-    <div className={`${styles.overlay} ${isVisible ? styles.overlayVisible: ''}`}>
+    <div className={`${styles.overlay} ${drawerVisible ? styles.overlayVisible: ''}`}>
       <div className={styles.drawer}>
         <h2 className="flex justify-between">
           Корзина
@@ -69,7 +69,7 @@ const Drawer = (isVisible) => {
                 />
               ))}
             </div>
-            <ul className="cartTotalBlock">
+            <ul className={styles.cartTotalBlock}>
               <li>
                 <span>Товаров на: </span>
                 <div></div>

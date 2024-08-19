@@ -178,7 +178,7 @@ function App() {
     <AppContext.Provider
       value={{
         items,
-       
+        drawerVisible,
         favoritesArray,
         isLoading,
         cart,
@@ -192,7 +192,7 @@ function App() {
       }}
     >
       <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-          <Drawer isVisible={drawerVisible}
+          <Drawer  
           />
         <Header/>
 

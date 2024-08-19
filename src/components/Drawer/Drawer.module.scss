@@ -1,6 +1,6 @@
 .overlay {
     visibility: hidden; 
-    overflow: hidden;
+     overflow: hidden;
     position: absolute;
     left: 0;
     top: 0;
@@ -9,11 +9,11 @@
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.2);
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,;
   }
   .overlayVisible{
-    visibility: visible;
-    opacity: 1;
+    visibility: visible ; 
+    opacity: 1; 
   }
   .drawer {
     padding: 20px;
