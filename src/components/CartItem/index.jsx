@@ -23,7 +23,7 @@ const CartItem = (props) => {
         <b>{props.price}руб.</b>
       </div>
 
-      <img className="removeBtn" src="/img/svg/btn-remove.svg" onClick={()=>(props.onRemove(props.id))} alt="Remove" />
+      <img className="removeBtn" src="img/svg/btn-remove.svg" onClick={()=>(props.onRemove(props.id))} alt="Remove" />
     </div>
   );
 };

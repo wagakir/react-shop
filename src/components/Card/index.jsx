@@ -45,7 +45,7 @@ article,
             toggleIsLiked();
             onClickFavorite()
           }}
-          src={checkFavoriteAdded(article) ? "/img/svg/liked.svg" : "/img/svg/unliked.svg"}
+          src={checkFavoriteAdded(article) ? "img/svg/liked.svg" : "img/svg/unliked.svg"}
           alt=""
           className="clickAnimation"
         />
@@ -64,9 +64,9 @@ article,
             onClickPlus();
           }}
           className="clickAnimation"
-          src={checkCardAdded(article) ? "/img/svg/btn-checked.svg" : "/img/svg/plus.svg"}
+          src={checkCardAdded(article) ? "img/svg/btn-checked.svg" : "img/svg/plus.svg"}
           alt="plus"
-        ></img>
+        />
       </div></>}
      
     </div>

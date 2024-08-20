@@ -33,61 +33,61 @@ function App() {
           {
             name: "Мужские Кроссовки Nike Blazer Mid Suede",
             price: 1232999,
-            imgUrl: "/img/clothes/sneakers/image1.jpg",
+            imgUrl: "img/clothes/sneakers/image1.jpg",
             article: 1,
           },
           {
             name: "Мужские Кроссовки Nike Air Max 270",
             price: 12999,
-            imgUrl: "/img/clothes/sneakers/image2.jpg",
+            imgUrl: "img/clothes/sneakers/image2.jpg",
             article: 2,
           },
           {
             name: "Мужские Кроссовки Nike Blazer Mid Suede",
             price: 15999,
-            imgUrl: "/img/clothes/sneakers/image3.jpg",
+            imgUrl: "img/clothes/sneakers/image3.jpg",
             article: 3,
           },
           {
             name: "Кроссовки Puma X Aka Boku Future Rider",
             price: 8999,
-            imgUrl: "/img/clothes/sneakers/image4.jpg",
+            imgUrl: "img/clothes/sneakers/image4.jpg",
             article: 4,
           },
           {
             name: "Мужские Кроссовки Under Armour Curry 8",
             price: 15199,
-            imgUrl: "/img/clothes/sneakers/image5.jpg",
+            imgUrl: "img/clothes/sneakers/image5.jpg",
             article: 5,
           },
           {
             name: "Мужские Кроссовки Nike Kyrie 7",
             price: 11299,
-            imgUrl: "/img/clothes/sneakers/image6.jpg",
+            imgUrl: "img/clothes/sneakers/image6.jpg",
             article: 6,
           },
           {
             name: "Мужские Кроссовки Jordan Air Jordan 11",
             price: 16499,
-            imgUrl: "/img/clothes/sneakers/image7.jpg",
+            imgUrl: "img/clothes/sneakers/image7.jpg",
             article: 7,
           },
           {
             name: "Мужские Кроссовки Nike LeBron XVIII",
             price: 13999,
-            imgUrl: "/img/clothes/sneakers/image8.jpg",
+            imgUrl: "img/clothes/sneakers/image8.jpg",
             article: 8,
           },
           {
             name: "Мужские Кроссовки Nike Lebron XVIII Low",
             price: 9999,
-            imgUrl: "/img/clothes/sneakers/image9.jpg",
+            imgUrl: "img/clothes/sneakers/image9.jpg",
             article: 9,
           },
           {
             name: "Мужские Кроссовки Nike Kyrie Flytrap IV",
             price: 11299,
-            imgUrl: "/img/clothes/sneakers/image10.jpg",
+            imgUrl: "img/clothes/sneakers/image10.jpg",
             article: 10,
           },
         ]);
@@ -200,7 +200,7 @@ function App() {
           <Routes>
             
             <Route
-              path="/"
+              path="react-shop/"
               element={
                 <Goods
                   onAddToFavorites={onAddToFavorites}
@@ -209,7 +209,7 @@ function App() {
               }
             />
 
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="react-shop/favorites" element={<Favorites />} />
 
             <Route path="*" element={<NotFoundPage></NotFoundPage>} />
           </Routes>

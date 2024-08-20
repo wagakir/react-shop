@@ -47,7 +47,7 @@ const Drawer = () => {
           <img
             onClick={() => toggleFieldSet(false)}
             className="removeBtn"
-            src="/img/svg/btn-remove.svg"
+            src="img/svg/btn-remove.svg"
             alt="Remove"
           />
         </h2>
@@ -91,7 +91,7 @@ const Drawer = () => {
                 disabled={isLoading}
               >
                 Оформить заказ
-                <img src="/img/svg/arrow.svg" alt="Arrow" />
+                <img src="img/svg/arrow.svg" alt="Arrow" />
               </button>
             </ul>
           </div>
