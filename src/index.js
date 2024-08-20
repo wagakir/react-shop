@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import * as ReactDOM from "react-dom/client";
 
 import {
@@ -6,6 +6,8 @@ import {
   // createBrowserRouter,
   // RouterProvider,
 } from "react-router-dom";
+
+
 import "./index.scss";
 import App from "./App";
 // import ErrorPage from "./error-page";
@@ -19,10 +21,10 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <>
-    {/*   <RouterProvider router={router} /> */}
-    <BrowserRouter>
+  // <StrictMode>
+      //  <RouterProvider router={router} /> 
+    <BrowserRouter basename="/react-shop/">
       <App />
     </BrowserRouter>
-  </>
+  // </StrictMode>
 );

@@ -7,7 +7,7 @@ const Header = (props) => {
   return (
     <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
       <NavLink
-        to="react-shop/"
+        to="/"
         className={({ isActive }) => (isActive ? "active" : "clickAnimation")}
       >
         <div className="headerLeft">
@@ -21,7 +21,7 @@ const Header = (props) => {
       <ul className="headerRight">
         <li>
           <NavLink
-            to="react-shop/favorites"
+            to="/favorites"
             className={({ isActive }) =>
               isActive ? "active" : "clickAnimation"
             }

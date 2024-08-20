@@ -200,7 +200,7 @@ function App() {
           <Routes>
             
             <Route
-              path="react-shop/"
+              path="/"
               element={
                 <Goods
                   onAddToFavorites={onAddToFavorites}
@@ -209,7 +209,7 @@ function App() {
               }
             />
 
-            <Route path="react-shop/favorites" element={<Favorites />} />
+            <Route path="/favorites" element={<Favorites />} />
 
             <Route path="*" element={<NotFoundPage></NotFoundPage>} />
           </Routes>

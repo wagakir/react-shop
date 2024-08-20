@@ -32,7 +32,7 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
         <h1 className="pl-3 truncate">Все товары </h1>
         <div className="p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex">
           <img
-            src="/img/svg/search.svg"
+            src="img/svg/search.svg"
             alt="search"
             className="p-[10px] m-1 hover:cursor-pointer rounded-full clickAnimation"
           />
@@ -48,7 +48,7 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
                 setSearchValue("");
               }}
               className="removeBtn p-2 rounded-full border-none"
-              src="/img/svg/btn-remove.svg"
+              src="img/svg/btn-remove.svg"
               alt="Remove"
             />
           )}
