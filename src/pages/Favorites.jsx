@@ -23,7 +23,7 @@ const Favorites = ({ props }) => {
       {favoritesArray.length > 0 ? (
         <>
           <div className=" flex justify-between items-start p-[40px 10px] w-full">
-            <h1 className="pl-6 truncate">Мои избранные </h1>
+            <h1 className="pl-6 text-wrap ">Мои избранные </h1>
           </div>
           <div className="goods">
             {favoritesArray.map((obj) => (

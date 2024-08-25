@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../App";
 const Header = (props) => {
-  const {cart, toggleFieldSet } = useContext(AppContext);
-  const summ = cart.reduce((sum,obj)=>obj.price+sum,0)
+  const { cart, toggleFieldSet } = useContext(AppContext);
+  const summ = cart.reduce((sum, obj) => obj.price + sum, 0);
   return (
-    <header className=" border-b-[2px] border-b-[#eaeaea] h-[120px] flex px-[10px] pt-[20px] pb-[40px] justify-between items-center ">
+    <header className=" border-b-[2px] border-b-[#eaeaea] h-fit flex px-[10px] pt-[20px] pb-[40px] justify-between items-center flex-wrap">
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? "active" : "clickAnimation")}
@@ -40,9 +40,11 @@ const Header = (props) => {
         <li onClick={props.onOpenCart}>
           {summ > 0 ? <span>{summ} руб.</span> : <span>Корзина пуста</span>}
         </li>
-        <li onClick={() => {
+        <li
+          onClick={() => {
             toggleFieldSet(true);
-          }}>
+          }}
+        >
           <img
             height={50}
             width={50}

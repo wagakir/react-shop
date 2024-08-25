@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import "./App.scss";
 import Header from "./components/Header.jsx";
-import Drawer from "./components/Drawer";
+import Drawer from "./components/Drawer/index.jsx";
 import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import Favorites from "./pages/Favorites.jsx";
@@ -98,11 +97,11 @@ function App() {
     }
     fetchData();
   }, []);
-  
+
   const onAddToCart = (obj) => {
     axios
       .post("https://6696b23c0312447373c36f73.mockapi.io/cart", obj)
-      .then((item)=>setCart((prev) => [...prev, item.data]))
+      .then((item) => setCart((prev) => [...prev, item.data]))
       .catch((err) =>
         alert(`не удалось доваить в корзину, ошибка:
          "${err}"`)
@@ -166,13 +165,16 @@ function App() {
       return false;
     }
   };
- 
+
   const [drawerVisible, setDrawerVisible] = useState(false);
   const toggleFieldSet = (element) => {
     setDrawerVisible(element);
-    if (element){
-    document.body.className='overflow-hidden'}
-    else{document.body.className=''}}
+    if (element) {
+      document.body.className = "overflow-hidden";
+    } else {
+      document.body.className = "";
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -188,17 +190,15 @@ function App() {
         onAddToCart,
         onRemoveItem,
         toggleFieldSet,
-        setCart
+        setCart,
       }}
     >
-      <div className="wrapper bg-white rounded-[20px] min-w-[700px] w-full flex flex-col p-[20px]">
-          <Drawer  
-          />
-        <Header/>
+      <div className="wrapper">
+        <Drawer />
+        <Header />
 
         <div className="h-fit m-[30px] flex flex-col items-center shadow-[0 10px 20px rgba(0,0,0,0.4)]">
           <Routes>
-            
             <Route
               path="/"
               element={

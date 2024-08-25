@@ -3,8 +3,7 @@ import Card from "../components/Card";
 import { AppContext } from "../App";
 // import axios from "axios";
 const Goods = ({ onAddToFavorites, onAddToCart }) => {
-  const { isLoading, items} =
-    useContext(AppContext);
+  const { isLoading, items } = useContext(AppContext);
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
   };
@@ -14,7 +13,20 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
     const filteredItems = items.filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-    return (isLoading ? [{article:0}, {article:1}, {article:2}, {article:3}, {article:4}, {article:5}, {article:6}, {article:7  }] : filteredItems).map((obj) => (
+    return (
+      isLoading
+        ? [
+            { article: 0 },
+            { article: 1 },
+            { article: 2 },
+            { article: 3 },
+            { article: 4 },
+            { article: 5 },
+            { article: 6 },
+            { article: 7 },
+          ]
+        : filteredItems
+    ).map((obj) => (
       <Card
         onClickFavorite={() => onAddToFavorites(obj)}
         onClickPlus={() => onAddToCart(obj)}
@@ -28,8 +40,8 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
   };
   return (
     <>
-      <div className=" flex justify-between items-center p-[40px 10px] w-full">
-        <h1 className="pl-3 truncate">Все товары </h1>
+      <div className=" flex justify-around items-center p-[40px 10px]  w-full flex-wrap">
+        <h1 className="pl-3 truncate min-w-[260px] flex-1 p-2">Все товары </h1>
         <div className="p-[0px 15px] border-solid border-[2px] border-[#c9c9c9] rounded-[20px] flex">
           <img
             src="img/svg/search.svg"
@@ -38,7 +50,7 @@ const Goods = ({ onAddToFavorites, onAddToCart }) => {
           />
           <input
             onChange={handleSearchChange}
-            className="text-base w-[200px]  m-2 border-none truncate"
+            className="text-base min-w-[100px]  m-2 border-none truncate"
             placeholder="Поиск"
             value={searchValue}
           />
